@@ -24,7 +24,7 @@ The `harness` binary is self-contained (no Python setup or `pip install` needed 
 ### Recommended (Static Security & Local AWS Emulation Gates)
 *(Note: If any of the optional static tools below are not installed, `harness verify` automatically marks that tool as `SKIPPED` rather than failing.)*
 - **`ls-lint`**, **`tflint`**, **`trivy`**, **`gitleaks`**, **`hadolint`** — Static structure, HCL, security, secret, and Dockerfile linters.
-- **`podman`** (or **`docker`**) — Runs the local `floci` (`:4566`) AWS emulator for live `terraform apply`, ECR container builds, and integration tests without an AWS account.
+- **`podman`** (or **`docker`**) — Runs the official **AWS Emulator** (`aws-emulator`, container mode on macOS/Windows or native package on Linux) for live `terraform apply`, container image build/smoke checks, and integration tests without an AWS account.
 
 #### One-Line Prerequisite Install (macOS Homebrew)
 ```bash
@@ -92,13 +92,14 @@ Add the following JSON block to your IDE's MCP configuration file and replace `Y
 > **Using Another Provider or Multi-Key Fallback?**
 > You can swap `GEMINI_API_KEY` for `OPENAI_API_KEY`, `KIMI_API_KEY`, `OPENROUTER_API_KEY`, or `DEEPSEEK_API_KEY`, and set `HARNESS_DEFAULT_MODEL` to `<provider>:<model>` (e.g., `openai:gpt-4.1`, `kimi:k3`, or `ollama:qwen3.8:27b`).
 
-After saving the file, **refresh or restart your IDE's MCP panel**. You will see **`aws-serverless-harness`** online with **8 tools**:
+After saving the file, **refresh or restart your IDE's MCP panel**. You will see **`aws-serverless-harness`** online with **9 tools**:
 - `harness_init`
 - `harness_stack_list`
 - `harness_stack_add`
 - `harness_stack_edit`
 - `harness_stack_remove`
 - `harness_verify`
+- `harness_validation_capabilities`
 - `harness_docs_sync`
 - `harness_upgrade`
 
@@ -124,7 +125,7 @@ Once the MCP server is connected, open your IDE chat and run the following workf
 **What happens inside the harness:**
 1. **Scoping Agent** converts your prompt (and optional `.png`/`.jpg`/`.pdf` diagram) into a typed `WorkOrder`.
 2. **Parallel Code Generation** writes `infra/stack_order_management.tf` and `backend/order_api/` inside an isolated Git worktree.
-3. **5-Gate Acceptance Ladder** runs `ls-lint`, `ruff`, `mypy --strict`, `terraform validate`, `tflint`, `trivy`, `gitleaks`, `pytest` (`moto` unit tests), and `terraform apply` against local `floci` (`:4566`) + live integration tests.
+3. **5-Gate Acceptance Ladder** runs `ls-lint`, `ruff`, `mypy --strict`, `terraform validate`, `tflint`, `trivy`, `gitleaks`, `pytest` (`moto` unit tests), and `terraform apply` against AWS Emulator + wiring & handler-level integration tests.
 4. **Transactional Merge**: Merges into `develop`, updates `README.md` tables, and records exact token telemetry in `.harness/state.yaml`.
 
 ---
@@ -151,7 +152,7 @@ Once the MCP server is connected, open your IDE chat and run the following workf
 ## 5. Troubleshooting
 
 - **IDE MCP Client Timeout (`timed out after 3m0s`)**:
-  - Some IDE MCP clients enforce a 180-second RPC timeout. On a cold run (when `uv` downloads wheels, `terraform` initializes providers, or `podman` pulls `floci`), `harness_stack_add` may take ~3.5–4.5 minutes.
+  - Some IDE MCP clients enforce a 180-second RPC timeout. On a cold run (when `uv` downloads wheels, `terraform` initializes providers, or `podman` builds the AWS Emulator image), `harness_stack_add` may take ~3.5–4.5 minutes.
   - **Do not kill the process**: the `harness mcp` worker finishes the gate ladder in the background and merges automatically. Simply ask the IDE to call `harness_stack_list` a minute later to see the merged stack and its token telemetry in `.harness/state.yaml`!
 - **Inspecting Failed Runs**:
   - If a stack cannot pass the gates after 3 repair attempts, your Git branch is left **100% untouched**, and the diagnostic patch + JSON gate failure report are saved in `<repo>/.harness/failed-runs/<run-id>.patch` and `<run-id>-report.json`.
