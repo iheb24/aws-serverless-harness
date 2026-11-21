@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-5e79d6c9a747",
+  "comparison_id": "cmp-3415645dfca5",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-serverless-cron",
+  "repo_commit": "3444e7348a3a4c65eb283de2659bb8061b9bead4",
+  "dirty_patch_sha256": null,
+  "backend": "floci",
+  "backend_version": "2.5.0",
+  "backend_release_commit": null,
+  "backend_reference": "docker.io/floci/floci:2.5.0",
+  "backend_digest": "sha256:6239c04b56a0f7f8032e0ffd7d070c73394269212b9b340467e539e9f4d61788",
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "passed",
+  "coverage": {
+    "covered_passing": 47,
+    "covered_failing": 0,
+    "uncovered": 1,
+    "unsupported": 0
+  },
+  "failures": [],
+  "timing_ms": {
+    "total": 83653,
+    "terraform-apply": 31608,
+    "terraform-idempotent": 1507,
+    "container-images": 173,
+    "container-images-push": 114,
+    "pytest-integration": 326
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-floci-5e79d6c9a747"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-17T21:31:09.737788Z",
+  "finished_at": "2026-11-17T21:32:33.339798Z"
+}

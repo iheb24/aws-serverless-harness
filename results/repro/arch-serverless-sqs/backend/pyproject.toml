@@ -1,0 +1,74 @@
+[project]
+name = "arch-serverless-sqs-backend"
+version = "0.1.0"
+description = "Backend workloads for arch-serverless-sqs."
+requires-python = ">=3.13"
+dependencies = [
+    "aws-lambda-powertools>=3.0.0",
+    "boto3>=1.35.0",
+    "pydantic>=2.10.0",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "boto3-stubs[dynamodb,events,lambda,s3,scheduler,sns,sqs,ssm]>=1.35.0",
+    "deptry>=0.20.0",
+    "diff-cover>=9.0.0",
+    "moto[dynamodb,events,s3,scheduler,sns,sqs,ssm]>=5.0.0",
+    "mypy>=1.15.0",
+    "pip-audit>=2.7.0",
+    "pytest>=8.3.0",
+    "pytest-cov>=6.0.0",
+    "pytest-json-report>=1.5.0",
+    "ruff>=0.14.0",
+    "types-pyyaml>=6.0.12",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "S", "C901", "D", "ERA"]
+mccabe.max-complexity = 10
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S105", "S106", "D"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+plugins = ["pydantic.mypy"]
+explicit_package_bases = true
+mypy_path = ["."]
+
+[[tool.mypy.overrides]]
+module = ["tests.*", "test_*"]
+disallow_untyped_defs = false
+disable_error_code = ["typeddict-item", "call-overload", "attr-defined"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.coverage.run]
+branch = true
+omit = ["tests/*"]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.deptry]
+extend_exclude = ["tests"]
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version = "0.1.0"
+version_files = ["backend/pyproject.toml:version"]

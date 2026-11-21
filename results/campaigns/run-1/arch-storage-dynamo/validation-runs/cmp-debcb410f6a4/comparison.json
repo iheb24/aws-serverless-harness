@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-debcb410f6a4",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-storage-dynamo",
+  "profile": "default",
+  "runs": {
+    "floci": {
+      "validation_id": "val-8fe4d9dee042",
+      "status": "passed",
+      "total_ms": 50030,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 19,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-e7be624306fe",
+      "status": "passed",
+      "total_ms": 16502,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 19,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T15:06:45.096764Z",
+  "finished_at": "2026-11-18T15:07:51.634165Z"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "arch-serverless-cron",
+  "module": "serverless_compute",
+  "kind": "snapshot",
+  "theme_id": "report-cron",
+  "started_at": "2026-11-18T18:07:48+00:00",
+  "generation": {
+    "generated": "snapshot",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "snapshot"
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": "cmp-1370b1404c9d",
+      "wall_ms": 215493,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-b1d4ccc976f4",
+      "wall_ms": 168880,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-a2a5404b52ad",
+      "wall_ms": 168917,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-39b4ea3d2e94",
+      "wall_ms": 168813,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-0bffcd0d6f82",
+      "wall_ms": 168823,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-18T18:22:39+00:00",
+  "updated_at": "2026-11-18T18:22:39+00:00"
+}

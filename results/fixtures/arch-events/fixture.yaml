@@ -1,0 +1,64 @@
+module:
+- event_choreography
+- event_choreography
+- event_choreography
+- event_choreography
+theme_id: order-events
+source_repo: benchmarks/differential/run-1/repos/arch-events
+stack:
+  theme_id: order-events
+  title: Add an event-driven infrastructure stack including an archived EventBridge bus, an SNS topic,
+    and two SQS queues (with DLQs) configured for fanout.
+  status: active
+  support_tier: certified_brick
+  workloads: []
+  infra:
+    module_instances:
+    - module: event_choreography
+      label: orders_bus
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    - module: event_choreography
+      label: orders_topic
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    - module: event_choreography
+      label: fulfillment_queue
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    - module: event_choreography
+      label: inventory_queue
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    custom_files: []
+    resources: []
+    ssm_paths: []
+    secret_arns: []
+  changelog:
+  - date: '2026-11-17'
+    action: add_stack
+    summary: Add an event-driven infrastructure stack including an archived EventBridge bus, an SNS topic,
+      and two SQS queues (with DLQs) configured for fanout.
+    run_id: 20261117-212026-276da7
+    total_tokens: 15072
+    token_usage:
+      scoping:
+        input_tokens: 6406
+        output_tokens: 522
+        total: 6928
+      terraform:
+        input_tokens: 5826
+        output_tokens: 977
+        total: 6803
+      python:
+        input_tokens: 0
+        output_tokens: 0
+        total: 0
+      repair:
+        input_tokens: 961
+        output_tokens: 380
+        total: 1341
+  caveats: []
+provenance:
+  generated_by: gemini:gemini-3-flash-preview
+  frozen_from: benchmarks/differential/run-1 (2026-11-18 campaign)

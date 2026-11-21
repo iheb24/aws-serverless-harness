@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-031612724196",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-serverless-cron",
+  "profile": "default",
+  "runs": {
+    "floci": {
+      "validation_id": "val-de6df0d59ed8",
+      "status": "passed",
+      "total_ms": 83822,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 47,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-a3b990b6fe83",
+      "status": "passed",
+      "total_ms": 84755,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 47,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-17T23:19:21.114986Z",
+  "finished_at": "2026-11-17T23:22:09.695865Z"
+}

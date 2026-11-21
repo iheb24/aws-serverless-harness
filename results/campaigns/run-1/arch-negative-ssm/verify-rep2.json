@@ -1,0 +1,103 @@
+{
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-negative-ssm",
+  "schema_version": 2,
+  "comparison_id": "cmp-072e7e01988f",
+  "results": [
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "passed",
+      "duration_ms": 7606,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-idempotent",
+      "status": "passed",
+      "duration_ms": 1505,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images",
+      "status": "passed",
+      "duration_ms": 124,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images-push",
+      "status": "passed",
+      "duration_ms": 119,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "pytest-integration",
+      "status": "passed",
+      "duration_ms": 304,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "failed",
+      "duration_ms": 7581,
+      "violations": [
+        {
+          "gate": "floci",
+          "tool": "terraform-apply",
+          "rule": "apply",
+          "message": "creating SSM Parameter (app/config): operation error SSM: PutParameter, https response error StatusCode: 400, RequestID: , ValidationException: Parameter name must be a fully qualified name.",
+          "file": "infra/modules/stateful_storage/main.tf",
+          "line": 92,
+          "severity": "error"
+        }
+      ],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    }
+  ],
+  "ok": true,
+  "violations": [
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "rule": "apply",
+      "message": "creating SSM Parameter (app/config): operation error SSM: PutParameter, https response error StatusCode: 400, RequestID: , ValidationException: Parameter name must be a fully qualified name.",
+      "file": "infra/modules/stateful_storage/main.tf",
+      "line": 92,
+      "severity": "error"
+    }
+  ],
+  "failed_tools": [],
+  "wall_ms": 26390
+}

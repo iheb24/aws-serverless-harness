@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-6c7ed64baae5",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-events",
+  "profile": "default",
+  "blocking": "floci",
+  "runs": {
+    "floci": {
+      "validation_id": "val-523c8b77a503",
+      "status": "passed",
+      "total_ms": 190842,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 20,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-5d606fded3ca",
+      "status": "passed",
+      "total_ms": 192197,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 20,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T17:22:03.174411Z",
+  "finished_at": "2026-11-18T17:28:26.216601Z"
+}

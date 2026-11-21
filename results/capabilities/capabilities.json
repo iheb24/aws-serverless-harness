@@ -1,0 +1,946 @@
+{
+  "repo": "<harness-repo>/results/repro/arch-serverless-sqs",
+  "default_backend": "aws-emulator",
+  "backends": [
+    {
+      "name": "aws-emulator",
+      "available": true,
+      "detail": "container mode via podman (image auto-built on first run)"
+    }
+  ],
+  "modules": [
+    {
+      "module": "event_choreography",
+      "profiled": true,
+      "profiles": [
+        {
+          "name": "control-plane",
+          "idempotence_check": true,
+          "operations": [
+            {
+              "operation": "events:CreateArchive",
+              "classification": "covered-passing",
+              "evidence": "events.archive-managed-rule-refuses-customer-writes-and-survives-them",
+              "failing_evidence": [],
+              "failing_total": 5
+            },
+            {
+              "operation": "events:CreateEventBus",
+              "classification": "covered-passing",
+              "evidence": "events.activate-deactivate-event-source-state-transition",
+              "failing_evidence": [
+                "events.api-destination-oauth-connection-fetches-a-client-credentials-token-and-sends-it-as-the-bearer-header",
+                "events.create-event-bus-reserved-and-malformed-names-rejected",
+                "events.disabled-rule-with-a-dead-letter-configured-target-drops-the-event-instead-of-dead-lettering-it",
+                "events.event-bus-tag-limit-counts-tags-already-on-the-bus-and-overwrites-do-not-count",
+                "events.log-group-target-dead-letters-events-timed-too-old-or-too-far-ahead-while-a-current-event-is-written"
+              ],
+              "failing_total": 40
+            },
+            {
+              "operation": "events:DeleteArchive",
+              "classification": "covered-passing",
+              "evidence": "events.archive-managed-rule-refuses-customer-writes-and-survives-them",
+              "failing_evidence": [],
+              "failing_total": 5
+            },
+            {
+              "operation": "events:DeleteEventBus",
+              "classification": "covered-passing",
+              "evidence": "events.activate-deactivate-event-source-state-transition",
+              "failing_evidence": [
+                "events.api-destination-oauth-connection-fetches-a-client-credentials-token-and-sends-it-as-the-bearer-header",
+                "events.create-event-bus-reserved-and-malformed-names-rejected",
+                "events.disabled-rule-with-a-dead-letter-configured-target-drops-the-event-instead-of-dead-lettering-it",
+                "events.event-bus-tag-limit-counts-tags-already-on-the-bus-and-overwrites-do-not-count",
+                "events.log-group-target-dead-letters-events-timed-too-old-or-too-far-ahead-while-a-current-event-is-written"
+              ],
+              "failing_total": 41
+            },
+            {
+              "operation": "events:DescribeEventBus",
+              "classification": "covered-passing",
+              "evidence": "events.activate-deactivate-event-source-state-transition",
+              "failing_evidence": [
+                "events.create-event-bus-reserved-and-malformed-names-rejected",
+                "events.event-bus-tag-limit-counts-tags-already-on-the-bus-and-overwrites-do-not-count"
+              ],
+              "failing_total": 8
+            },
+            {
+              "operation": "sns:CreateTopic",
+              "classification": "covered-passing",
+              "evidence": "sns.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sns.authenticate-on-unsubscribe-refuses-the-anonymous-unsubscribe-url",
+                "sns.confirm-subscription-token-confirms-only-its-own-subscription-whatever-the-topic-arn",
+                "sns.confirm-subscription-token-is-reusable-until-unsubscribe-then-not-found",
+                "sns.https-endpoint-failing-with-500-is-retried-then-dead-lettered",
+                "sns.https-raw-message-delivery-posts-the-bare-body-with-the-rawdelivery-header"
+              ],
+              "failing_total": 81
+            },
+            {
+              "operation": "sns:DeleteTopic",
+              "classification": "covered-passing",
+              "evidence": "sns.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sns.authenticate-on-unsubscribe-refuses-the-anonymous-unsubscribe-url",
+                "sns.confirm-subscription-token-confirms-only-its-own-subscription-whatever-the-topic-arn",
+                "sns.confirm-subscription-token-is-reusable-until-unsubscribe-then-not-found",
+                "sns.https-endpoint-failing-with-500-is-retried-then-dead-lettered",
+                "sns.https-raw-message-delivery-posts-the-bare-body-with-the-rawdelivery-header"
+              ],
+              "failing_total": 83
+            },
+            {
+              "operation": "sns:GetTopicAttributes",
+              "classification": "covered-passing",
+              "evidence": "sns.add-permission-invalid-action-rejected",
+              "failing_evidence": [],
+              "failing_total": 32
+            },
+            {
+              "operation": "sns:Subscribe",
+              "classification": "covered-passing",
+              "evidence": "sns.clearing-a-filter-policy-with-an-empty-value-restores-unfiltered-delivery",
+              "failing_evidence": [
+                "sns.authenticate-on-unsubscribe-refuses-the-anonymous-unsubscribe-url",
+                "sns.confirm-subscription-token-confirms-only-its-own-subscription-whatever-the-topic-arn",
+                "sns.confirm-subscription-token-is-reusable-until-unsubscribe-then-not-found",
+                "sns.https-endpoint-failing-with-500-is-retried-then-dead-lettered",
+                "sns.https-raw-message-delivery-posts-the-bare-body-with-the-rawdelivery-header"
+              ],
+              "failing_total": 57
+            },
+            {
+              "operation": "sns:Unsubscribe",
+              "classification": "covered-passing",
+              "evidence": "sns.clearing-a-filter-policy-with-an-empty-value-restores-unfiltered-delivery",
+              "failing_evidence": [
+                "sns.authenticate-on-unsubscribe-refuses-the-anonymous-unsubscribe-url",
+                "sns.confirm-subscription-token-is-reusable-until-unsubscribe-then-not-found",
+                "sns.raw-message-delivery-drops-message-attributes-for-an-https-subscriber-but-keeps-them-for-sqs"
+              ],
+              "failing_total": 51
+            },
+            {
+              "operation": "sqs:CreateQueue",
+              "classification": "covered-passing",
+              "evidence": "sqs.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.create-queue-after-set-queue-attributes-compares-current-values",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone"
+              ],
+              "failing_total": 413
+            },
+            {
+              "operation": "sqs:DeleteQueue",
+              "classification": "covered-passing",
+              "evidence": "sqs.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sqs.cli-sqs-create-send-receive-delete",
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.create-queue-after-set-queue-attributes-compares-current-values",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id"
+              ],
+              "failing_total": 432
+            },
+            {
+              "operation": "sqs:GetQueueAttributes",
+              "classification": "covered-passing",
+              "evidence": "sqs.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sqs.cli-sqs-create-send-receive-delete",
+                "sqs.create-queue-after-set-queue-attributes-compares-current-values",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone"
+              ],
+              "failing_total": 447
+            },
+            {
+              "operation": "sqs:SetQueueAttributes",
+              "classification": "covered-passing",
+              "evidence": "sqs.cancel-message-move-task-conserves-messages",
+              "failing_evidence": [
+                "sqs.create-queue-after-set-queue-attributes-compares-current-values",
+                "sqs.recreated-queue-does-not-inherit-the-deleted-queues-policy",
+                "sqs.set-queue-attributes-policy-statement-limits-rejected",
+                "sqs.sse-rejects-anonymous-sendmessage-that-an-unencrypted-queue-accepts"
+              ],
+              "failing_total": 196
+            },
+            {
+              "operation": "sts:GetCallerIdentity",
+              "classification": "covered-passing",
+              "evidence": "sts.a-chained-session-outlasts-the-parent-role-and-expires-later-than-the-parent-session",
+              "failing_evidence": [
+                "sts.assume-role-external-id-success-with-correct-id",
+                "sts.assume-role-packed-policy-too-large-rejected",
+                "sts.decode-authorization-message-invalid-rejected",
+                "sts.decode-authorization-message-round-trip",
+                "sts.e2e-assume-role-oversized-session-policy-rejected"
+              ],
+              "failing_total": 1066
+            }
+          ]
+        },
+        {
+          "name": "workflow",
+          "idempotence_check": false,
+          "operations": [
+            {
+              "operation": "events:PutEvents",
+              "classification": "covered-passing",
+              "evidence": "events.api-destination-4xx-dead-letters-without-retry-while-5xx-is-retried-until-its-retry-attempts-are-used-up",
+              "failing_evidence": [
+                "events.api-destination-oauth-connection-fetches-a-client-credentials-token-and-sends-it-as-the-bearer-header",
+                "events.deploy-cfn-target-dead-letter-config-captures-undeliverable-events-until-a-stack-update-adds-the-queue-policy",
+                "events.disabled-rule-with-a-dead-letter-configured-target-drops-the-event-instead-of-dead-lettering-it",
+                "events.log-group-target-dead-letters-events-timed-too-old-or-too-far-ahead-while-a-current-event-is-written",
+                "events.put-events-endpoint-id-delivers-to-primary-and-replicates-to-secondary"
+              ],
+              "failing_total": 73
+            },
+            {
+              "operation": "sns:Publish",
+              "classification": "covered-passing",
+              "evidence": "sns.clearing-a-filter-policy-with-an-empty-value-restores-unfiltered-delivery",
+              "failing_evidence": [
+                "sns.authenticate-on-unsubscribe-refuses-the-anonymous-unsubscribe-url",
+                "sns.https-endpoint-failing-with-500-is-retried-then-dead-lettered",
+                "sns.https-raw-message-delivery-posts-the-bare-body-with-the-rawdelivery-header",
+                "sns.https-subscription-receives-nothing-until-confirmed-then-gets-the-notification",
+                "sns.https-subscription-with-a-zero-retry-delivery-policy-attempts-a-failing-notification-exactly-once"
+              ],
+              "failing_total": 30
+            },
+            {
+              "operation": "sqs:DeleteMessage",
+              "classification": "covered-passing",
+              "evidence": "sqs.approximate-counters-converge-through-receive-release-and-delete",
+              "failing_evidence": [
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone",
+                "sqs.identity-policy-resourcetag-condition-gates-send-message",
+                "sqs.message-attribute-type-length-bounds-rejected",
+                "sqs.message-move-task-redrive-assigns-new-message-id-and-sent-timestamp"
+              ],
+              "failing_total": 339
+            },
+            {
+              "operation": "sqs:GetQueueAttributes",
+              "classification": "covered-passing",
+              "evidence": "sqs.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sqs.cli-sqs-create-send-receive-delete",
+                "sqs.create-queue-after-set-queue-attributes-compares-current-values",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone"
+              ],
+              "failing_total": 447
+            },
+            {
+              "operation": "sqs:ReceiveMessage",
+              "classification": "covered-passing",
+              "evidence": "sqs.approximate-counters-converge-through-receive-release-and-delete",
+              "failing_evidence": [
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone",
+                "sqs.identity-policy-resourcetag-condition-gates-send-message"
+              ],
+              "failing_total": 386
+            },
+            {
+              "operation": "sqs:SendMessage",
+              "classification": "covered-passing",
+              "evidence": "sqs.approx-count-tracks",
+              "failing_evidence": [
+                "sqs.cli-sqs-create-send-receive-delete",
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone",
+                "sqs.identity-policy-resourcetag-condition-gates-send-message"
+              ],
+              "failing_total": 109
+            }
+          ]
+        }
+      ],
+      "known_gaps": []
+    },
+    {
+      "module": "serverless_compute",
+      "profiled": true,
+      "profiles": [
+        {
+          "name": "control-plane",
+          "idempotence_check": true,
+          "operations": [
+            {
+              "operation": "iam:CreateRole",
+              "classification": "covered-passing",
+              "evidence": "iam.account-summary-reflects-resource-counts",
+              "failing_evidence": [
+                "iam.assumed-role-session-is-authorized-by-the-role-policy",
+                "iam.duplicate-create-returns-entityalreadyexists",
+                "iam.iam-cred-password-policy-violation-and-role-session-change-password-rejected",
+                "iam.iam-entity-names-case-insensitive-unique",
+                "iam.inline-policy-put-preserves-document-bytes-and-rejects-malformed-shapes"
+              ],
+              "failing_total": 2425
+            },
+            {
+              "operation": "iam:DeleteRole",
+              "classification": "covered-passing",
+              "evidence": "iam.account-summary-reflects-resource-counts",
+              "failing_evidence": [
+                "iam.assumed-role-session-is-authorized-by-the-role-policy",
+                "iam.duplicate-create-returns-entityalreadyexists",
+                "iam.iam-cred-password-policy-violation-and-role-session-change-password-rejected",
+                "iam.iam-entity-names-case-insensitive-unique",
+                "iam.inline-policy-put-preserves-document-bytes-and-rejects-malformed-shapes"
+              ],
+              "failing_total": 2400
+            },
+            {
+              "operation": "iam:DeleteRolePolicy",
+              "classification": "covered-passing",
+              "evidence": "iam.cli-iam-role-lifecycle",
+              "failing_evidence": [
+                "iam.assumed-role-session-is-authorized-by-the-role-policy",
+                "iam.iam-cred-password-policy-violation-and-role-session-change-password-rejected",
+                "iam.session-policy-intersects-the-role-policy"
+              ],
+              "failing_total": 1279
+            },
+            {
+              "operation": "iam:PutRolePolicy",
+              "classification": "covered-passing",
+              "evidence": "iam.delete-role",
+              "failing_evidence": [
+                "iam.assumed-role-session-is-authorized-by-the-role-policy",
+                "iam.iam-cred-password-policy-violation-and-role-session-change-password-rejected",
+                "iam.session-policy-intersects-the-role-policy"
+              ],
+              "failing_total": 1262
+            },
+            {
+              "operation": "lambda:AddPermission",
+              "classification": "covered-passing",
+              "evidence": "lambda.add-get-policy",
+              "failing_evidence": [
+                "lambda.deep-lambda-3-url-auth-without-invoke-function-grant-denied",
+                "lambda.deep-lambda-3-url-cors-disallowed-preflight-rejected",
+                "lambda.deep-lambda-3-url-cors-not-enforced-server-side",
+                "lambda.deep-lambda-3-url-cors-preflight-answered-without-invoking-handler",
+                "lambda.function-url-missing-permission-not-invoked"
+              ],
+              "failing_total": 201
+            },
+            {
+              "operation": "lambda:CreateEventSourceMapping",
+              "classification": "covered-passing",
+              "evidence": "lambda.create-event-source-mapping-duplicate-conflict",
+              "failing_evidence": [
+                "lambda.docdb-esm-without-database-name-rejected-before-any-access-check",
+                "lambda.msk-esm-invalid-starting-position-rejected",
+                "lambda.msk-esm-role-without-describe-cluster-rejected-before-the-cluster-is-looked-up",
+                "lambda.msk-esm-topics-list-too-long-rejected"
+              ],
+              "failing_total": 48
+            },
+            {
+              "operation": "lambda:CreateFunction",
+              "classification": "covered-passing",
+              "evidence": "lambda.50-distinct-code-artifacts-no-shared-code-store",
+              "failing_evidence": [
+                "lambda.account-settings-limits-drive-enforcement",
+                "lambda.alias-weight-ladder-observed-distribution",
+                "lambda.allocation-beyond-memory-size-is-killed-out-of-memory-rejected",
+                "lambda.arm64-image-function-runtime-reports-aarch64",
+                "lambda.callback-heartbeat-extends-deadline"
+              ],
+              "failing_total": 776
+            },
+            {
+              "operation": "lambda:DeleteEventSourceMapping",
+              "classification": "covered-passing",
+              "evidence": "lambda.create-event-source-mapping-duplicate-conflict",
+              "failing_evidence": [],
+              "failing_total": 45
+            },
+            {
+              "operation": "lambda:DeleteFunction",
+              "classification": "covered-passing",
+              "evidence": "lambda.50-distinct-code-artifacts-no-shared-code-store",
+              "failing_evidence": [
+                "lambda.account-settings-limits-drive-enforcement",
+                "lambda.alias-weight-ladder-observed-distribution",
+                "lambda.allocation-beyond-memory-size-is-killed-out-of-memory-rejected",
+                "lambda.arm64-image-function-runtime-reports-aarch64",
+                "lambda.callback-heartbeat-extends-deadline"
+              ],
+              "failing_total": 797
+            },
+            {
+              "operation": "lambda:GetFunction",
+              "classification": "covered-passing",
+              "evidence": "lambda.50-distinct-code-artifacts-no-shared-code-store",
+              "failing_evidence": [
+                "lambda.account-settings-limits-drive-enforcement",
+                "lambda.arm64-image-function-runtime-reports-aarch64",
+                "lambda.container-image-uri-source-validation-rejected",
+                "lambda.create-function-non-zip-and-empty-zip-rejected-creating-nothing",
+                "lambda.create-function-with-container-image-rejects-code-signing-config"
+              ],
+              "failing_total": 258
+            },
+            {
+              "operation": "lambda:RemovePermission",
+              "classification": "covered-passing",
+              "evidence": "lambda.permission-revisionid-precondition",
+              "failing_evidence": [
+                "lambda.deep-lambda-3-url-auth-without-invoke-function-grant-denied",
+                "lambda.function-url-missing-permission-not-invoked",
+                "lambda.url-none-auth-grants-to-a-named-principal-do-not-admit-anonymous-callers"
+              ],
+              "failing_total": 35
+            },
+            {
+              "operation": "lambda:UpdateFunctionCode",
+              "classification": "covered-passing",
+              "evidence": "lambda.50-distinct-code-artifacts-no-shared-code-store",
+              "failing_evidence": [
+                "lambda.alias-weight-ladder-observed-distribution",
+                "lambda.custom-runtime-invoked-arn-header-carries-the-invoke-qualifier",
+                "lambda.deep-lambda-1-fn-state-padded-code-update-in-progress-serves-previous-code",
+                "lambda.deep-lambda-runtime-truth-tmp-empty-in-fresh-env-and-survives-warm",
+                "lambda.environment-identity-warm-reuse-and-config-update-forces-cold"
+              ],
+              "failing_total": 27
+            },
+            {
+              "operation": "logs:CreateLogGroup",
+              "classification": "covered-passing",
+              "evidence": "logs.account-data-protection-policy-masks-a-new-log-group",
+              "failing_evidence": [
+                "logs.associate-kms-key-cross-region-mismatch-rejected",
+                "logs.conflict-exception-concurrent-state",
+                "logs.deep-logs-1-logsql-ppl-backticked-fields-where-stats-match-hand-computation",
+                "logs.deep-logs-2-logcmk-malformed-entity-rejected-events-kept",
+                "logs.deep-logs-3-logacct-subscription-filter-policy-not-in-excludes-named-group"
+              ],
+              "failing_total": 160
+            },
+            {
+              "operation": "logs:DeleteLogGroup",
+              "classification": "covered-passing",
+              "evidence": "logs.account-data-protection-policy-masks-a-new-log-group",
+              "failing_evidence": [
+                "logs.associate-kms-key-cross-region-mismatch-rejected",
+                "logs.conflict-exception-concurrent-state",
+                "logs.deep-logs-1-logsql-ppl-backticked-fields-where-stats-match-hand-computation",
+                "logs.deep-logs-2-logcmk-malformed-entity-rejected-events-kept",
+                "logs.deep-logs-3-logacct-subscription-filter-policy-not-in-excludes-named-group"
+              ],
+              "failing_total": 823
+            },
+            {
+              "operation": "s3:PutBucketNotificationConfiguration",
+              "classification": "covered-passing",
+              "evidence": "s3.notification-invalid-destination-rejected",
+              "failing_evidence": [
+                "s3.directory-bucket-rejects-object-tagging-versioning-notification-and-replication",
+                "s3.notification-fifo-destination-rejected",
+                "s3.notification-filter-non-matching-key-not-delivered",
+                "s3.notification-sqs-test-event-format"
+              ],
+              "failing_total": 23
+            },
+            {
+              "operation": "scheduler:CreateSchedule",
+              "classification": "covered-passing",
+              "evidence": "scheduler.concurrent-create-schedule-same-name",
+              "failing_evidence": [
+                "scheduler.create-schedule-cron-last-weekday-and-nth-weekday-wildcards-accepted",
+                "scheduler.create-schedule-cron-year-beyond-feasible-horizon-rejected",
+                "scheduler.create-schedule-dead-letter-config-fifo-queue-rejected",
+                "scheduler.create-schedule-in-deleting-group-blocked",
+                "scheduler.create-schedule-invalid-timezone-rejected"
+              ],
+              "failing_total": 35
+            },
+            {
+              "operation": "scheduler:DeleteSchedule",
+              "classification": "covered-passing",
+              "evidence": "scheduler.concurrent-create-schedule-same-name",
+              "failing_evidence": [
+                "scheduler.create-schedule-cron-last-weekday-and-nth-weekday-wildcards-accepted",
+                "scheduler.create-schedule-cron-year-beyond-feasible-horizon-rejected",
+                "scheduler.create-schedule-dead-letter-config-fifo-queue-rejected",
+                "scheduler.create-schedule-in-deleting-group-blocked",
+                "scheduler.create-schedule-invalid-timezone-rejected"
+              ],
+              "failing_total": 35
+            },
+            {
+              "operation": "sqs:CreateQueue",
+              "classification": "covered-passing",
+              "evidence": "sqs.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.create-queue-after-set-queue-attributes-compares-current-values",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone"
+              ],
+              "failing_total": 413
+            },
+            {
+              "operation": "sqs:DeleteQueue",
+              "classification": "covered-passing",
+              "evidence": "sqs.add-permission-invalid-action-rejected",
+              "failing_evidence": [
+                "sqs.cli-sqs-create-send-receive-delete",
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.create-queue-after-set-queue-attributes-compares-current-values",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id"
+              ],
+              "failing_total": 432
+            },
+            {
+              "operation": "sts:GetCallerIdentity",
+              "classification": "covered-passing",
+              "evidence": "sts.a-chained-session-outlasts-the-parent-role-and-expires-later-than-the-parent-session",
+              "failing_evidence": [
+                "sts.assume-role-external-id-success-with-correct-id",
+                "sts.assume-role-packed-policy-too-large-rejected",
+                "sts.decode-authorization-message-invalid-rejected",
+                "sts.decode-authorization-message-round-trip",
+                "sts.e2e-assume-role-oversized-session-policy-rejected"
+              ],
+              "failing_total": 1066
+            }
+          ]
+        },
+        {
+          "name": "workflow",
+          "idempotence_check": false,
+          "operations": [
+            {
+              "operation": "dynamodb:GetItem",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.32-way-conditional-counter-no-lost-update-with-audit-trail",
+              "failing_evidence": [
+                "dynamodb.attribute-name-length-limit",
+                "dynamodb.attribute-updates-add-delete-put-return-values-on-existing-item",
+                "dynamodb.batch-execute-statement-returning-delete-old-and-update-remove-modified-new",
+                "dynamodb.batch-request-shape-defects-rejected",
+                "dynamodb.batch-write-item-and-delete-item-index-capacity-arms-follow-item-estate"
+              ],
+              "failing_total": 175
+            },
+            {
+              "operation": "dynamodb:PutItem",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.32-way-conditional-counter-no-lost-update-with-audit-trail",
+              "failing_evidence": [
+                "dynamodb.attribute-name-length-limit",
+                "dynamodb.attribute-updates-add-delete-put-return-values-on-existing-item",
+                "dynamodb.batch-execute-statement-multi-attribute-gsi-select-rejected-per-slot",
+                "dynamodb.batch-execute-statement-non-key-and-index-key-select-rejected-no-table-name",
+                "dynamodb.batch-execute-statement-or-sort-key-overlap-rejected-per-slot"
+              ],
+              "failing_total": 155
+            },
+            {
+              "operation": "lambda:Invoke",
+              "classification": "covered-passing",
+              "evidence": "lambda.50-distinct-code-artifacts-no-shared-code-store",
+              "failing_evidence": [
+                "lambda.alias-weight-ladder-observed-distribution",
+                "lambda.allocation-beyond-memory-size-is-killed-out-of-memory-rejected",
+                "lambda.arm64-image-function-runtime-reports-aarch64",
+                "lambda.callback-heartbeat-extends-deadline",
+                "lambda.callback-no-heartbeat-times-out"
+              ],
+              "failing_total": 536
+            },
+            {
+              "operation": "logs:PutLogEvents",
+              "classification": "covered-passing",
+              "evidence": "logs.account-data-protection-policy-masks-a-new-log-group",
+              "failing_evidence": [
+                "logs.deep-logs-1-logsql-ppl-backticked-fields-where-stats-match-hand-computation",
+                "logs.deep-logs-2-logcmk-malformed-entity-rejected-events-kept",
+                "logs.deep-logs-3-logacct-subscription-filter-policy-not-in-excludes-named-group",
+                "logs.deep-logs-3-logacct-transformer-datetimeconverter-shifts-timezone-on-ingest",
+                "logs.deep-logs-3-logacct-transformer-policy-applies-to-new-group-and-group-transformer-overrides"
+              ],
+              "failing_total": 37
+            },
+            {
+              "operation": "s3:GetObject",
+              "classification": "covered-passing",
+              "evidence": "s3.50-bucket-fanout-object-isolation-and-negative-space",
+              "failing_evidence": [
+                "s3.bucket-holding-more-than-sixty-four-mib-reads-back-every-object",
+                "s3.copy-object-if-match-on-the-destination-refuses-a-stale-etag",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.cors-preflight-refused-after-delete-bucket-cors",
+                "s3.deep-s3-immutability-requester-pays-anonymous-with-payer-header-rejected"
+              ],
+              "failing_total": 264
+            },
+            {
+              "operation": "s3:PutObject",
+              "classification": "covered-passing",
+              "evidence": "s3.50-bucket-fanout-object-isolation-and-negative-space",
+              "failing_evidence": [
+                "s3.bucket-holding-more-than-sixty-four-mib-reads-back-every-object",
+                "s3.copy-object-if-match-on-the-destination-refuses-a-stale-etag",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.copy-object-under-if-none-match-policy",
+                "s3.cors-preflight-allowed-origin-returns-rule-headers"
+              ],
+              "failing_total": 569
+            },
+            {
+              "operation": "sqs:ReceiveMessage",
+              "classification": "covered-passing",
+              "evidence": "sqs.approximate-counters-converge-through-receive-release-and-delete",
+              "failing_evidence": [
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.fifo-batch-with-a-group-less-entry-rejected-whole-and-group-stream-unchanged",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone",
+                "sqs.identity-policy-resourcetag-condition-gates-send-message"
+              ],
+              "failing_total": 386
+            },
+            {
+              "operation": "sqs:SendMessage",
+              "classification": "covered-passing",
+              "evidence": "sqs.approx-count-tracks",
+              "failing_evidence": [
+                "sqs.cli-sqs-create-send-receive-delete",
+                "sqs.client-on-the-queue-url-host-sends-and-receives-on-that-queue",
+                "sqs.fifo-dead-letter-queue-move-sets-dedup-id-to-original-message-id",
+                "sqs.fifo-queue-moves-an-exact-multibyte-message-and-the-deleted-fifo-queue-is-gone",
+                "sqs.identity-policy-resourcetag-condition-gates-send-message"
+              ],
+              "failing_total": 109
+            }
+          ]
+        }
+      ],
+      "known_gaps": []
+    },
+    {
+      "module": "stateful_storage",
+      "profiled": true,
+      "profiles": [
+        {
+          "name": "control-plane",
+          "idempotence_check": true,
+          "operations": [
+            {
+              "operation": "s3:CreateBucket",
+              "classification": "covered-passing",
+              "evidence": "s3.50-bucket-fanout-object-isolation-and-negative-space",
+              "failing_evidence": [
+                "s3.bucket-holding-more-than-sixty-four-mib-reads-back-every-object",
+                "s3.bucket-replication-destination-validation-rejected",
+                "s3.copy-object-if-match-on-the-destination-refuses-a-stale-etag",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.copy-object-under-if-none-match-policy"
+              ],
+              "failing_total": 901
+            },
+            {
+              "operation": "s3:DeleteBucket",
+              "classification": "covered-passing",
+              "evidence": "s3.50-bucket-fanout-object-isolation-and-negative-space",
+              "failing_evidence": [
+                "s3.bucket-holding-more-than-sixty-four-mib-reads-back-every-object",
+                "s3.bucket-replication-destination-validation-rejected",
+                "s3.copy-object-if-match-on-the-destination-refuses-a-stale-etag",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.copy-object-under-if-none-match-policy"
+              ],
+              "failing_total": 941
+            },
+            {
+              "operation": "s3:PutBucketEncryption",
+              "classification": "covered-passing",
+              "evidence": "s3.bucket-encryption-config-lifecycle",
+              "failing_evidence": [
+                "s3.s3-ssec-and-endpoint-enforcement-ssec-copy-to-sse-s3-without-the-copy-source-key-rejected",
+                "s3.s3-ssec-and-endpoint-enforcement-ssec-multipart-upload-round-trips-only-with-the-customer-key",
+                "s3.s3-ssec-and-endpoint-enforcement-ssec-request-over-plain-http-rejected",
+                "s3.s3-ssec-and-endpoint-enforcement-ssec-upload-part-copy-rekeys-an-ssec-source-into-a-multipart-object",
+                "s3.s3-ssec-and-endpoint-enforcement-website-endpoint-serving-an-ssec-object-rejected"
+              ],
+              "failing_total": 10
+            },
+            {
+              "operation": "s3:PutBucketLifecycleConfiguration",
+              "classification": "covered-passing",
+              "evidence": "s3.deep-s3-storage-class-lifecycle-transition-colder-before-warmer-rejected",
+              "failing_evidence": [
+                "s3.s3-lcp-rejects-inverted-or-equal-object-size-range"
+              ],
+              "failing_total": 2
+            },
+            {
+              "operation": "s3:PutBucketPublicAccessBlock",
+              "classification": "uncovered",
+              "evidence": null,
+              "failing_evidence": [],
+              "failing_total": 0
+            },
+            {
+              "operation": "s3:PutBucketVersioning",
+              "classification": "covered-passing",
+              "evidence": "s3.bucket-replication-config-lifecycle",
+              "failing_evidence": [
+                "s3.bucket-replication-destination-validation-rejected",
+                "s3.directory-bucket-rejects-object-tagging-versioning-notification-and-replication",
+                "s3.get-object-nonexistent-version-errors",
+                "s3.list-object-versions-pages-one-key-written-more-than-one-thousand-times"
+              ],
+              "failing_total": 45
+            },
+            {
+              "operation": "dynamodb:CreateTable",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.32-way-conditional-counter-no-lost-update-with-audit-trail",
+              "failing_evidence": [
+                "dynamodb.attribute-name-length-limit",
+                "dynamodb.attribute-updates-add-delete-put-return-values-on-existing-item",
+                "dynamodb.awsjson-epoch-timestamp-survives-two-deserializers",
+                "dynamodb.awsjson-error-code-carrier-is-body-only-rejected",
+                "dynamodb.batch-execute-statement-consistent-read-is-billed-per-member"
+              ],
+              "failing_total": 277
+            },
+            {
+              "operation": "dynamodb:DeleteTable",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.32-way-conditional-counter-no-lost-update-with-audit-trail",
+              "failing_evidence": [
+                "dynamodb.attribute-name-length-limit",
+                "dynamodb.attribute-updates-add-delete-put-return-values-on-existing-item",
+                "dynamodb.awsjson-epoch-timestamp-survives-two-deserializers",
+                "dynamodb.awsjson-error-code-carrier-is-body-only-rejected",
+                "dynamodb.batch-execute-statement-consistent-read-is-billed-per-member"
+              ],
+              "failing_total": 293
+            },
+            {
+              "operation": "dynamodb:DescribeTable",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.32-way-conditional-counter-no-lost-update-with-audit-trail",
+              "failing_evidence": [
+                "dynamodb.attribute-name-length-limit",
+                "dynamodb.attribute-updates-add-delete-put-return-values-on-existing-item",
+                "dynamodb.awsjson-epoch-timestamp-survives-two-deserializers",
+                "dynamodb.awsjson-error-code-carrier-is-body-only-rejected",
+                "dynamodb.batch-execute-statement-consistent-read-is-billed-per-member"
+              ],
+              "failing_total": 307
+            },
+            {
+              "operation": "ssm:DeleteParameter",
+              "classification": "covered-passing",
+              "evidence": "ssm.add-tags-existing-key-overwrites-and-duplicate-keys-last-wins",
+              "failing_evidence": [
+                "ssm.automation-execute-aws-api-reaches-success",
+                "ssm.create-time-tags-list-exactly-across-resource-types",
+                "ssm.delete-resource-policy-unknown-policy-id-rejected",
+                "ssm.ec2-image-datatype-validation-is-asynchronous-and-the-parameter-never-lands",
+                "ssm.expiration-notification-requires-expiration-policy"
+              ],
+              "failing_total": 50
+            },
+            {
+              "operation": "ssm:PutParameter",
+              "classification": "covered-passing",
+              "evidence": "ssm.add-tags-existing-key-overwrites-and-duplicate-keys-last-wins",
+              "failing_evidence": [
+                "ssm.automation-execute-aws-api-reaches-success",
+                "ssm.create-time-tags-list-exactly-across-resource-types",
+                "ssm.delete-resource-policy-unknown-policy-id-rejected",
+                "ssm.ec2-image-datatype-validation-is-asynchronous-and-the-parameter-never-lands",
+                "ssm.expiration-notification-requires-expiration-policy"
+              ],
+              "failing_total": 36
+            },
+            {
+              "operation": "sts:GetCallerIdentity",
+              "classification": "covered-passing",
+              "evidence": "sts.a-chained-session-outlasts-the-parent-role-and-expires-later-than-the-parent-session",
+              "failing_evidence": [
+                "sts.assume-role-external-id-success-with-correct-id",
+                "sts.assume-role-packed-policy-too-large-rejected",
+                "sts.decode-authorization-message-invalid-rejected",
+                "sts.decode-authorization-message-round-trip",
+                "sts.e2e-assume-role-oversized-session-policy-rejected"
+              ],
+              "failing_total": 1066
+            }
+          ]
+        },
+        {
+          "name": "workflow",
+          "idempotence_check": false,
+          "operations": [
+            {
+              "operation": "s3:DeleteObject",
+              "classification": "covered-passing",
+              "evidence": "s3.abac-policy-enforcement",
+              "failing_evidence": [
+                "s3.copy-object-if-match-on-the-destination-refuses-a-stale-etag",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.cors-preflight-allowed-origin-returns-rule-headers",
+                "s3.cors-preflight-disallowed-method-rejected-allowed-method-passes",
+                "s3.cors-preflight-disallowed-origin-rejected-allowed-origin-passes"
+              ],
+              "failing_total": 428
+            },
+            {
+              "operation": "s3:GetObject",
+              "classification": "covered-passing",
+              "evidence": "s3.50-bucket-fanout-object-isolation-and-negative-space",
+              "failing_evidence": [
+                "s3.bucket-holding-more-than-sixty-four-mib-reads-back-every-object",
+                "s3.copy-object-if-match-on-the-destination-refuses-a-stale-etag",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.cors-preflight-refused-after-delete-bucket-cors",
+                "s3.deep-s3-immutability-requester-pays-anonymous-with-payer-header-rejected"
+              ],
+              "failing_total": 264
+            },
+            {
+              "operation": "s3:ListObjectsV2",
+              "classification": "covered-passing",
+              "evidence": "s3.50-bucket-fanout-object-isolation-and-negative-space",
+              "failing_evidence": [
+                "s3.bucket-holding-more-than-sixty-four-mib-reads-back-every-object",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.copy-object-under-if-none-match-policy",
+                "s3.delete-object-policy-requires-if-match-header",
+                "s3.directory-bucket-multipart-complete-etag-is-not-an-md5-composite"
+              ],
+              "failing_total": 717
+            },
+            {
+              "operation": "s3:PutObject",
+              "classification": "covered-passing",
+              "evidence": "s3.50-bucket-fanout-object-isolation-and-negative-space",
+              "failing_evidence": [
+                "s3.bucket-holding-more-than-sixty-four-mib-reads-back-every-object",
+                "s3.copy-object-if-match-on-the-destination-refuses-a-stale-etag",
+                "s3.copy-object-into-directory-bucket-rejects-source-tags-and-destination-ssec",
+                "s3.copy-object-under-if-none-match-policy",
+                "s3.cors-preflight-allowed-origin-returns-rule-headers"
+              ],
+              "failing_total": 569
+            },
+            {
+              "operation": "dynamodb:DeleteItem",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.absence-condition-holds-with-no-previous-item",
+              "failing_evidence": [
+                "dynamodb.batch-write-item-and-delete-item-index-capacity-arms-follow-item-estate",
+                "dynamodb.delete-item-key-duplicate-set-member-byte-order-rejected",
+                "dynamodb.duplicate-set-members-in-condition-key-and-transact-rejected",
+                "dynamodb.execute-transaction-duplicate-insert-rolls-back-sibling-insert",
+                "dynamodb.put-update-delete-item-return-consumed-capacity-invalid-enum-rejected"
+              ],
+              "failing_total": 12
+            },
+            {
+              "operation": "dynamodb:GetItem",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.32-way-conditional-counter-no-lost-update-with-audit-trail",
+              "failing_evidence": [
+                "dynamodb.attribute-name-length-limit",
+                "dynamodb.attribute-updates-add-delete-put-return-values-on-existing-item",
+                "dynamodb.batch-execute-statement-returning-delete-old-and-update-remove-modified-new",
+                "dynamodb.batch-request-shape-defects-rejected",
+                "dynamodb.batch-write-item-and-delete-item-index-capacity-arms-follow-item-estate"
+              ],
+              "failing_total": 175
+            },
+            {
+              "operation": "dynamodb:PutItem",
+              "classification": "covered-passing",
+              "evidence": "dynamodb.32-way-conditional-counter-no-lost-update-with-audit-trail",
+              "failing_evidence": [
+                "dynamodb.attribute-name-length-limit",
+                "dynamodb.attribute-updates-add-delete-put-return-values-on-existing-item",
+                "dynamodb.batch-execute-statement-multi-attribute-gsi-select-rejected-per-slot",
+                "dynamodb.batch-execute-statement-non-key-and-index-key-select-rejected-no-table-name",
+                "dynamodb.batch-execute-statement-or-sort-key-overlap-rejected-per-slot"
+              ],
+              "failing_total": 155
+            },
+            {
+              "operation": "ssm:GetParameter",
+              "classification": "covered-passing",
+              "evidence": "ssm.add-tags-existing-key-overwrites-and-duplicate-keys-last-wins",
+              "failing_evidence": [
+                "ssm.automation-execute-aws-api-reaches-success",
+                "ssm.compliance-item-empty-vs-absent-details-preserved",
+                "ssm.compliance-item-numeric-and-timestamp-precision-preserved",
+                "ssm.compliance-item-timestamp-precision-preserved",
+                "ssm.compliance-items-invalid-resource-type-rejected"
+              ],
+              "failing_total": 586
+            },
+            {
+              "operation": "ssm:PutParameter",
+              "classification": "covered-passing",
+              "evidence": "ssm.add-tags-existing-key-overwrites-and-duplicate-keys-last-wins",
+              "failing_evidence": [
+                "ssm.automation-execute-aws-api-reaches-success",
+                "ssm.create-time-tags-list-exactly-across-resource-types",
+                "ssm.delete-resource-policy-unknown-policy-id-rejected",
+                "ssm.ec2-image-datatype-validation-is-asynchronous-and-the-parameter-never-lands",
+                "ssm.expiration-notification-requires-expiration-policy"
+              ],
+              "failing_total": 36
+            }
+          ]
+        }
+      ],
+      "known_gaps": [
+        {
+          "id": "s3-control-host-prefix",
+          "summary": "Terraform's AWS provider calls S3 Control ListTagsForResource for bucket tagging; S3 Control requests always inject the account id into the endpoint host (000000000000.127.0.0.1), which AWS Emulator documents as unreachable — S3 bucket apply fails on aws-emulator.",
+          "affects": [
+            "s3:CreateBucket",
+            "s3:DeleteBucket"
+          ],
+          "backends": [
+            "aws-emulator"
+          ],
+          "reference": "https://docs.aws.amazon.com/emulator/latest/userguide/point-sdk-to-emulator.html",
+          "observed_in": "v1.0.471.1+ (spike 2026-11-17, binary 1.0.481)",
+          "workaround": "validate S3 bucket resources on real AWS (S3 Control is unreachable on local emulators)"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-9dcfbce81fc0",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-serverless-cron",
+  "profile": "default",
+  "runs": {
+    "floci": {
+      "validation_id": "val-090e719bc29e",
+      "status": "passed",
+      "total_ms": 156207,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 47,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-01be3af5cac9",
+      "status": "failed",
+      "total_ms": 388952,
+      "failures": [
+        "terraform-apply"
+      ],
+      "coverage": {
+        "covered_passing": 47,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-17T21:22:04.574474Z",
+  "finished_at": "2026-11-17T21:31:09.734631Z"
+}

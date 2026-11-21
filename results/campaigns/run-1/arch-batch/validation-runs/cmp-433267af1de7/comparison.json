@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-433267af1de7",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-batch",
+  "profile": "default",
+  "runs": {
+    "floci": {
+      "validation_id": "val-ca9b165d4188",
+      "status": "failed",
+      "total_ms": 342523,
+      "failures": [
+        "terraform-destroy"
+      ],
+      "coverage": {
+        "covered_passing": 23,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-26800c134316",
+      "status": "failed",
+      "total_ms": 102967,
+      "failures": [
+        "container-images"
+      ],
+      "coverage": {
+        "covered_passing": 23,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T01:13:59.825911Z",
+  "finished_at": "2026-11-18T01:21:25.316088Z"
+}

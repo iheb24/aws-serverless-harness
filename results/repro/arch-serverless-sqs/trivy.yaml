@@ -1,0 +1,7 @@
+severity:
+  - HIGH
+  - CRITICAL
+
+misconfiguration:
+  terraform:
+    exclude-downloaded-modules: false

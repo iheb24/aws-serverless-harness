@@ -1,0 +1,8 @@
+line-length = 88
+target-version = "py313"
+
+[lint]
+select = ["E", "F", "W", "I", "UP", "B", "S", "C901", "D", "ERA"]
+
+[lint.pydocstyle]
+convention = "google"

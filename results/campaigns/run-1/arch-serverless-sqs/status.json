@@ -1,0 +1,48 @@
+{
+  "id": "arch-serverless-sqs",
+  "module": "serverless_compute",
+  "kind": "generated",
+  "theme_id": "order-worker",
+  "started_at": "2026-11-17T23:09:07+00:00",
+  "generation": {
+    "generated": "agent",
+    "tokens": 28441,
+    "repairs": 1,
+    "notes": ""
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": "cmp-31b93c253423",
+      "wall_ms": 307107,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-e6868facb324",
+      "wall_ms": 306447,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-17T23:19:21+00:00",
+  "updated_at": "2026-11-17T23:19:21+00:00"
+}

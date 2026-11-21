@@ -1,0 +1,131 @@
+{
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-stepfunctions",
+  "schema_version": 2,
+  "comparison_id": "cmp-0e5f69ebfa16",
+  "results": [
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "passed",
+      "duration_ms": 1502,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-idempotent",
+      "status": "passed",
+      "duration_ms": 1499,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images",
+      "status": "passed",
+      "duration_ms": 120,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images-push",
+      "status": "passed",
+      "duration_ms": 113,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "pytest-integration",
+      "status": "passed",
+      "duration_ms": 276,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "passed",
+      "duration_ms": 1503,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-idempotent",
+      "status": "passed",
+      "duration_ms": 1509,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images",
+      "status": "passed",
+      "duration_ms": 119,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images-push",
+      "status": "passed",
+      "duration_ms": 115,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "pytest-integration",
+      "status": "passed",
+      "duration_ms": 264,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    }
+  ],
+  "ok": true,
+  "violations": [],
+  "failed_tools": [],
+  "wall_ms": 13582
+}

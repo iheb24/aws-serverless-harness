@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-576eb4288965",
+  "comparison_id": null,
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-events",
+  "repo_commit": "4cb71e4783d4e8f365995005d72fada31158600b",
+  "dirty_patch_sha256": "c4b717ce2bac9fc4ba8abfbbb18228e68ea9038d69861210e63626d2fea8853c",
+  "backend": "aws-emulator",
+  "backend_version": "1.0.492",
+  "backend_expected_version": null,
+  "version_drift": false,
+  "backend_release_commit": null,
+  "backend_reference": "localhost/harness-aws-emulator:lts",
+  "backend_digest": null,
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "passed",
+  "coverage": {
+    "covered_passing": 20,
+    "covered_failing": 0,
+    "uncovered": 0,
+    "unsupported": 0
+  },
+  "failures": [],
+  "timing_ms": {
+    "total": 192522,
+    "terraform-apply": 76735,
+    "terraform-idempotent": 1586,
+    "container-images": 191,
+    "container-images-push": 126,
+    "pytest-integration": 354
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-aws-emulator-576eb4288965"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-18T21:28:45.364963Z",
+  "finished_at": "2026-11-18T21:31:57.843000Z"
+}

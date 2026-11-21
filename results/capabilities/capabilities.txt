@@ -1,0 +1,19 @@
+                            validation capabilities:                            
+<harness-repo>/results/repro/arch-serverless
+                                      -sqs                                      
+┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━┓
+┃ module  ┃ profil… ┃ profile ┃ covere… ┃ covere… ┃ uncove… ┃ unsup… ┃ not-ap… ┃
+┡━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━┩
+│ event_… │ yes     │ contro… │ 15      │ 0       │ 0       │ 0      │ 0       │
+│ event_… │ yes     │ workfl… │ 6       │ 0       │ 0       │ 0      │ 0       │
+│ server… │ yes     │ contro… │ 20      │ 0       │ 0       │ 0      │ 0       │
+│ server… │ yes     │ workfl… │ 8       │ 0       │ 0       │ 0      │ 0       │
+│ statef… │ yes     │ contro… │ 11      │ 0       │ 1       │ 0      │ 0       │
+│ statef… │ yes     │ workfl… │ 9       │ 0       │ 0       │ 0      │ 0       │
+└─────────┴─────────┴─────────┴─────────┴─────────┴─────────┴────────┴─────────┘
+  known gap stateful_storage/s3-control-host-prefix (aws-emulator): Terraform's 
+AWS provider calls S3 Control ListTagsForResource for bucket tagging; S3 Control
+requests always inject the account id into the endpoint host 
+(000000000000.127.0.0.1), which AWS Emulator documents as unreachable — S3 
+bucket apply fails on aws-emulator.
+  aws-emulator: container mode via podman (image auto-built on first run)

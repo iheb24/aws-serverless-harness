@@ -1,0 +1,63 @@
+module:
+- stateful_storage
+- serverless_compute
+theme_id: report-cron
+source_repo: benchmarks/differential/run-1/repos/arch-serverless-cron
+stack:
+  theme_id: report-cron
+  title: Add a scheduled serverless stack named report-cron comprising a Lambda function triggered every
+    15 minutes and a DynamoDB table for heartbeat persistence.
+  status: active
+  support_tier: certified_brick
+  workloads:
+  - package_name: report_cron
+    workload_type: lambda_scheduled
+    entrypoint: report_cron.entrypoint.handler
+    env:
+    - name: TABLE_NAME
+      source: plain
+      value: module.heartbeat_store.table_name
+      description: Target DynamoDB table name for heartbeat records.
+    containerized: false
+  infra:
+    module_instances:
+    - module: stateful_storage
+      label: heartbeat_store
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    - module: serverless_compute
+      label: report_executor
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    custom_files: []
+    resources: []
+    ssm_paths: []
+    secret_arns: []
+  changelog:
+  - date: '2026-11-17'
+    action: add_stack
+    summary: Add a scheduled serverless stack named report-cron comprising a Lambda function triggered
+      every 15 minutes and a DynamoDB table for heartbeat persistence.
+    run_id: 20261117-221346-58b9fc
+    total_tokens: 27086
+    token_usage:
+      scoping:
+        input_tokens: 6406
+        output_tokens: 496
+        total: 6902
+      terraform:
+        input_tokens: 5720
+        output_tokens: 422
+        total: 6142
+      python:
+        input_tokens: 2888
+        output_tokens: 3244
+        total: 6132
+      repair:
+        input_tokens: 6964
+        output_tokens: 946
+        total: 7910
+  caveats: []
+provenance:
+  generated_by: gemini:gemini-3-flash-preview
+  frozen_from: benchmarks/differential/run-1 (2026-11-18 campaign)

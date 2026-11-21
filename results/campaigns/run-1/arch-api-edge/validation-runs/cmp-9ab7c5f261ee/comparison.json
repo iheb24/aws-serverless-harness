@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-9ab7c5f261ee",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-api-edge",
+  "profile": "default",
+  "runs": {
+    "floci": {
+      "validation_id": "val-b5132a4e8fe7",
+      "status": "passed",
+      "total_ms": 83347,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 46,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-f5a020bc75e9",
+      "status": "passed",
+      "total_ms": 84579,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 46,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T16:09:59.223424Z",
+  "finished_at": "2026-11-18T16:12:47.152321Z"
+}

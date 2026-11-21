@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-4cf3c9e181f6",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-serverless-sqs",
+  "profile": "default",
+  "blocking": "floci",
+  "runs": {
+    "floci": {
+      "validation_id": "val-a32c46b59cfc",
+      "status": "passed",
+      "total_ms": 150908,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 67,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-6ff6f63519fc",
+      "status": "passed",
+      "total_ms": 155878,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 67,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T17:52:27.622364Z",
+  "finished_at": "2026-11-18T17:57:34.411532Z"
+}

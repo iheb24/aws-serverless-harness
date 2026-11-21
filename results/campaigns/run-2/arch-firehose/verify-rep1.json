@@ -1,0 +1,76 @@
+{
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-firehose",
+  "schema_version": 2,
+  "comparison_id": "cmp-fa61385b6ea7",
+  "results": [
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "failed",
+      "duration_ms": 6080,
+      "violations": [
+        {
+          "gate": "floci",
+          "tool": "terraform-apply",
+          "rule": "apply",
+          "message": "listing tags for S3 (Simple Storage) Bucket (arch-firehose-raw-bucket): operation error S3 Control: ListTagsForResource, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"http://000000000000.127.0.0.1:36727/v20180820/tags/arn%3Aaws%3As3%3A%3A%3Aarch-firehose-raw-bucket\": dial tcp: lookup 000000000000.127.0.0.1: no such host",
+          "file": "infra/modules/stateful_storage/main.tf",
+          "line": 33,
+          "severity": "error"
+        }
+      ],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "failed",
+      "duration_ms": 1714,
+      "violations": [
+        {
+          "gate": "floci",
+          "tool": "terraform-apply",
+          "rule": "apply",
+          "message": "listing tags for S3 (Simple Storage) Bucket (arch-firehose-raw-bucket): operation error S3 Control: ListTagsForResource, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"https://000000000000.127.0.0.1:36495/v20180820/tags/arn%3Aaws%3As3%3A%3A%3Aarch-firehose-raw-bucket\": dial tcp: lookup 000000000000.127.0.0.1: no such host",
+          "file": "infra/modules/stateful_storage/main.tf",
+          "line": 33,
+          "severity": "error"
+        }
+      ],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    }
+  ],
+  "ok": false,
+  "violations": [
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "rule": "apply",
+      "message": "listing tags for S3 (Simple Storage) Bucket (arch-firehose-raw-bucket): operation error S3 Control: ListTagsForResource, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"http://000000000000.127.0.0.1:36727/v20180820/tags/arn%3Aaws%3As3%3A%3A%3Aarch-firehose-raw-bucket\": dial tcp: lookup 000000000000.127.0.0.1: no such host",
+      "file": "infra/modules/stateful_storage/main.tf",
+      "line": 33,
+      "severity": "error"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "rule": "apply",
+      "message": "listing tags for S3 (Simple Storage) Bucket (arch-firehose-raw-bucket): operation error S3 Control: ListTagsForResource, https response error StatusCode: 0, RequestID: , HostID: , request send failed, Get \"https://000000000000.127.0.0.1:36495/v20180820/tags/arn%3Aaws%3As3%3A%3A%3Aarch-firehose-raw-bucket\": dial tcp: lookup 000000000000.127.0.0.1: no such host",
+      "file": "infra/modules/stateful_storage/main.tf",
+      "line": 33,
+      "severity": "error"
+    }
+  ],
+  "failed_tools": [
+    "terraform-apply"
+  ],
+  "wall_ms": 59938
+}

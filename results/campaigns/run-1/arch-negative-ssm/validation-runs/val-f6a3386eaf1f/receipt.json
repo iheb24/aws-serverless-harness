@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-f6a3386eaf1f",
+  "comparison_id": "cmp-31a019b750ac",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-negative-ssm",
+  "repo_commit": "dbfb6fac214b46fad731b401e52fff4c59035dcf",
+  "dirty_patch_sha256": "ba4c30ab38081725b1eb9d72eb9ac67299cd5763957e3214c949b16ba459abbb",
+  "backend": "aws-emulator",
+  "backend_version": "1.0.492",
+  "backend_release_commit": null,
+  "backend_reference": "localhost/harness-aws-emulator:lts",
+  "backend_digest": null,
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "failed",
+  "coverage": {
+    "covered_passing": 19,
+    "covered_failing": 0,
+    "uncovered": 1,
+    "unsupported": 0
+  },
+  "failures": [
+    "terraform-apply"
+  ],
+  "timing_ms": {
+    "total": 14221,
+    "terraform-apply": 7587
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-aws-emulator-f6a3386eaf1f"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-17T22:18:21.083293Z",
+  "finished_at": "2026-11-17T22:18:35.263095Z"
+}

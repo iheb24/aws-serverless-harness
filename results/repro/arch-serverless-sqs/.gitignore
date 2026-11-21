@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.tfvars.local
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash*.log
+.terraformrc
+
+# Harness runtime artifacts
+.harness/tmp/
+.harness/failed-runs/
+.harness/validation-runs/
+
+# OS
+.DS_Store

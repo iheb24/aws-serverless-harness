@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-05467ece2740",
+  "comparison_id": "cmp-648e479f042e",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-storage-dynamo",
+  "repo_commit": "19d9db8cd0c5f0e350bae68bde56e99f2292c5dc",
+  "dirty_patch_sha256": "d827e5bcd9da070e78179467c26c5362dd303ea8f835811c4e7625b448601419",
+  "backend": "floci",
+  "backend_version": "2.5.0",
+  "backend_expected_version": null,
+  "version_drift": false,
+  "backend_release_commit": null,
+  "backend_reference": "docker.io/floci/floci:2.5.0",
+  "backend_digest": "sha256:6239c04b56a0f7f8032e0ffd7d070c73394269212b9b340467e539e9f4d61788",
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "passed",
+  "coverage": {
+    "covered_passing": 19,
+    "covered_failing": 0,
+    "uncovered": 1,
+    "unsupported": 0
+  },
+  "failures": [],
+  "timing_ms": {
+    "total": 12371,
+    "terraform-apply": 7596,
+    "terraform-idempotent": 1552,
+    "container-images": 130,
+    "container-images-push": 122,
+    "pytest-integration": 307
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-floci-05467ece2740"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-18T15:33:48.406764Z",
+  "finished_at": "2026-11-18T15:34:00.737143Z"
+}

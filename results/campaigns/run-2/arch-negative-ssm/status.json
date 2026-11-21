@@ -1,0 +1,93 @@
+{
+  "id": "arch-negative-ssm",
+  "module": "stateful_storage",
+  "kind": "negative",
+  "theme_id": "negative-ssm",
+  "started_at": "2026-11-18T19:53:16+00:00",
+  "generation": {
+    "generated": "fixture",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "negative"
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": "cmp-efbff675eca2",
+      "wall_ms": 65650,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-51649a49e714",
+      "wall_ms": 26200,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-a4e1d463d6be",
+      "wall_ms": 26969,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-2549d61f8921",
+      "wall_ms": 26232,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-537ffad90d9f",
+      "wall_ms": 26901,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-18T19:56:09+00:00",
+  "updated_at": "2026-11-18T19:56:09+00:00"
+}

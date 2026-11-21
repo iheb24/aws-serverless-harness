@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-d87b5c6c5271",
+  "comparison_id": "cmp-22b7c7453353",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-storage-dynamo",
+  "repo_commit": "b07a7cf870b47586d6020b9b16568febb7680378",
+  "dirty_patch_sha256": "d827e5bcd9da070e78179467c26c5362dd303ea8f835811c4e7625b448601419",
+  "backend": "aws-emulator",
+  "backend_version": "1.0.492",
+  "backend_expected_version": null,
+  "version_drift": false,
+  "backend_release_commit": null,
+  "backend_reference": "localhost/harness-aws-emulator:lts",
+  "backend_digest": null,
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "passed",
+  "coverage": {
+    "covered_passing": 19,
+    "covered_failing": 0,
+    "uncovered": 1,
+    "unsupported": 0
+  },
+  "failures": [],
+  "timing_ms": {
+    "total": 16482,
+    "terraform-apply": 7615,
+    "terraform-idempotent": 1575,
+    "container-images": 135,
+    "container-images-push": 123,
+    "pytest-integration": 306
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-aws-emulator-d87b5c6c5271"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-18T17:08:24.281806Z",
+  "finished_at": "2026-11-18T17:08:40.721370Z"
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-45c1418cb9f4",
+  "comparison_id": "cmp-4962f7beb11d",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-firehose",
+  "repo_commit": "a76908a365d7ac6c7e57575fa1fe8318a0f4f4b5",
+  "dirty_patch_sha256": "2f703ad99ff1aec204918c63757c21db524ef0979d1cb67d4040ba64e2e9f56e",
+  "backend": "aws-emulator",
+  "backend_version": "1.0.492",
+  "backend_release_commit": null,
+  "backend_reference": "localhost/harness-aws-emulator:lts",
+  "backend_digest": null,
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "failed",
+  "coverage": {
+    "covered_passing": 34,
+    "covered_failing": 0,
+    "uncovered": 1,
+    "unsupported": 0
+  },
+  "failures": [
+    "terraform-apply"
+  ],
+  "timing_ms": {
+    "total": 4603,
+    "terraform-apply": 1525
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-aws-emulator-45c1418cb9f4"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-17T22:33:32.037818Z",
+  "finished_at": "2026-11-17T22:33:36.602480Z"
+}

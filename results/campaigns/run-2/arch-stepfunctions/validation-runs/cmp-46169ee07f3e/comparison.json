@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-46169ee07f3e",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-stepfunctions",
+  "profile": "default",
+  "blocking": "floci",
+  "runs": {
+    "floci": {
+      "validation_id": "val-37bbc9794b91",
+      "status": "passed",
+      "total_ms": 47575,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 15,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-63095073e1c0",
+      "status": "passed",
+      "total_ms": 8267,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 15,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T18:37:31.488144Z",
+  "finished_at": "2026-11-18T18:38:27.332780Z"
+}

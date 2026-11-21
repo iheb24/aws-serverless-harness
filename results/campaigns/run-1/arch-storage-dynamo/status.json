@@ -1,0 +1,93 @@
+{
+  "id": "arch-storage-dynamo",
+  "module": "stateful_storage",
+  "kind": "snapshot",
+  "theme_id": "session-store",
+  "started_at": "2026-11-18T15:32:49+00:00",
+  "generation": {
+    "generated": "snapshot",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "snapshot"
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": "cmp-c9bc1ade8456",
+      "wall_ms": 30244,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-7d03bad6121f",
+      "wall_ms": 29038,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-648e479f042e",
+      "wall_ms": 28946,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-2cb014b40797",
+      "wall_ms": 28994,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-c59e1a9a7a02",
+      "wall_ms": 28903,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-18T15:35:15+00:00",
+  "updated_at": "2026-11-18T15:35:15+00:00"
+}

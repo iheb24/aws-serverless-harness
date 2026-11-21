@@ -1,0 +1,102 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=2048"]
+      - id: detect-private-key
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.17.0
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: mypy
+        name: mypy strict (backend)
+        entry: uv run --directory backend mypy .
+        language: system
+        files: ^backend/.*\.py$
+        pass_filenames: false
+
+      - id: ls-lint
+        name: ls-lint
+        entry: npx --yes @ls-lint/ls-lint@2.3.2
+        language: system
+        pass_filenames: false
+        always_run: true
+
+      - id: boto3-isolation
+        name: boto3/botocore only inside clients/
+        entry: python3 scripts/check_boto3_isolation.py
+        language: system
+        types: [python]
+        files: ^backend/
+
+      - id: no-inline-comments
+        name: zero inline comments in backend packages
+        entry: python3 scripts/check_no_inline_comments.py
+        language: system
+        types: [python]
+        files: ^backend/
+
+      - id: readme-structure
+        name: honest README sections + mermaid
+        entry: python3 scripts/check_readme_structure.py
+        language: system
+        files: (^|/)README\.md$
+
+      - id: tf-no-comments
+        name: zero comment syntax in Terraform files
+        entry: python3 scripts/check_tf_no_comments.py
+        language: system
+        files: \.tf$
+
+      - id: tf-root-purity
+        name: main.tf wires modules only
+        entry: python3 scripts/check_tf_root_purity.py
+        language: system
+        files: ^infra/[^/]*\.tf$
+
+      - id: trivy-config
+        name: trivy config scan (infra)
+        entry: trivy config ./infra --severity HIGH,CRITICAL --exit-code 1
+        language: system
+        files: ^infra/
+        pass_filenames: false
+
+      - id: hadolint
+        name: hadolint
+        entry: hadolint
+        language: system
+        types: [dockerfile]
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.0
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.19.2
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.109.2
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_tflint
+      - id: terraform_docs
+        args:
+          - --hook-config=--path-to-file=README.md
+          - --hook-config=--create-file-if-not-exist=true

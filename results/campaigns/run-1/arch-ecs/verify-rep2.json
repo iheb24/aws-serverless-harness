@@ -1,0 +1,203 @@
+{
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-ecs",
+  "schema_version": 2,
+  "comparison_id": "cmp-34964075edd4",
+  "results": [
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "passed",
+      "duration_ms": 11655,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-idempotent",
+      "status": "passed",
+      "duration_ms": 1592,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images",
+      "status": "passed",
+      "duration_ms": 4436,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images-push",
+      "status": "failed",
+      "duration_ms": 4543,
+      "violations": [
+        {
+          "gate": "floci",
+          "tool": "container-images",
+          "rule": "image-pipeline",
+          "message": "order_dashboard: ecr login: Error: authenticating creds for \"000000000000.dkr.ecr.eu-west-3.localhost:4566\": pinging container registry 000000000000.dkr.ecr.eu-west-3.localhost:4566: Get \"http://000000000000.dkr.ecr.eu-west-3.localhost:4566/v2/\": dial tcp [::1]:4566: connect: connection refused",
+          "file": "backend/order_dashboard/Dockerfile",
+          "line": null,
+          "severity": "error"
+        }
+      ],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "pytest-integration",
+      "status": "passed",
+      "duration_ms": 360,
+      "violations": [],
+      "detail": null,
+      "required": true,
+      "failure_class": null,
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-destroy",
+      "status": "failed",
+      "duration_ms": 0,
+      "violations": [
+        {
+          "gate": "floci",
+          "tool": "terraform-destroy",
+          "rule": "cleanup",
+          "message": "timed out after 300s: terraform -chdir=infra destroy -auto-approve -input=false -var-file=envs/dev.tfvars",
+          "file": null,
+          "line": null,
+          "severity": "error"
+        }
+      ],
+      "detail": null,
+      "required": true,
+      "failure_class": "cleanup_failure",
+      "backend": "floci",
+      "backend_version": "2.5.0"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-apply",
+      "status": "passed",
+      "duration_ms": 11676,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-idempotent",
+      "status": "passed",
+      "duration_ms": 1576,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images",
+      "status": "passed",
+      "duration_ms": 10298,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images-push",
+      "status": "failed",
+      "duration_ms": 9851,
+      "violations": [
+        {
+          "gate": "floci",
+          "tool": "container-images",
+          "rule": "image-pipeline",
+          "message": "order_dashboard: ecr login: Error: authenticating creds for \"127.0.0.1:35273\": pinging container registry 127.0.0.1:35273: Get \"https://127.0.0.1:35273/v2/\": tls: failed to verify certificate: x509: certificate signed by unknown authority",
+          "file": "backend/order_dashboard/Dockerfile",
+          "line": null,
+          "severity": "error"
+        }
+      ],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    },
+    {
+      "gate": "floci",
+      "tool": "pytest-integration",
+      "status": "passed",
+      "duration_ms": 430,
+      "violations": [],
+      "detail": null,
+      "required": false,
+      "failure_class": null,
+      "backend": "aws-emulator",
+      "backend_version": "1.0.492"
+    }
+  ],
+  "ok": false,
+  "violations": [
+    {
+      "gate": "floci",
+      "tool": "container-images",
+      "rule": "image-pipeline",
+      "message": "order_dashboard: ecr login: Error: authenticating creds for \"000000000000.dkr.ecr.eu-west-3.localhost:4566\": pinging container registry 000000000000.dkr.ecr.eu-west-3.localhost:4566: Get \"http://000000000000.dkr.ecr.eu-west-3.localhost:4566/v2/\": dial tcp [::1]:4566: connect: connection refused",
+      "file": "backend/order_dashboard/Dockerfile",
+      "line": null,
+      "severity": "error"
+    },
+    {
+      "gate": "floci",
+      "tool": "terraform-destroy",
+      "rule": "cleanup",
+      "message": "timed out after 300s: terraform -chdir=infra destroy -auto-approve -input=false -var-file=envs/dev.tfvars",
+      "file": null,
+      "line": null,
+      "severity": "error"
+    },
+    {
+      "gate": "floci",
+      "tool": "container-images",
+      "rule": "image-pipeline",
+      "message": "order_dashboard: ecr login: Error: authenticating creds for \"127.0.0.1:35273\": pinging container registry 127.0.0.1:35273: Get \"https://127.0.0.1:35273/v2/\": tls: failed to verify certificate: x509: certificate signed by unknown authority",
+      "file": "backend/order_dashboard/Dockerfile",
+      "line": null,
+      "severity": "error"
+    }
+  ],
+  "failed_tools": [
+    "terraform-destroy"
+  ],
+  "wall_ms": 363045
+}

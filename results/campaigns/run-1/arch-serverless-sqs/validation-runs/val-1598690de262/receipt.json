@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-1598690de262",
+  "comparison_id": "cmp-31b93c253423",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-serverless-sqs",
+  "repo_commit": "715be5750d1ddc32ee05c4f052e0c3786ebcb12a",
+  "dirty_patch_sha256": "28e90d338e960319eda84627e488eb64adc2555b2a2458b40a90ce6d19a5697e",
+  "backend": "aws-emulator",
+  "backend_version": "1.0.492",
+  "backend_release_commit": null,
+  "backend_reference": "localhost/harness-aws-emulator:lts",
+  "backend_digest": null,
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "passed",
+  "coverage": {
+    "covered_passing": 67,
+    "covered_failing": 0,
+    "uncovered": 1,
+    "unsupported": 0
+  },
+  "failures": [],
+  "timing_ms": {
+    "total": 155674,
+    "terraform-apply": 57401,
+    "terraform-idempotent": 1506,
+    "container-images": 176,
+    "container-images-push": 114,
+    "pytest-integration": 365
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-aws-emulator-1598690de262"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-17T23:11:38.989133Z",
+  "finished_at": "2026-11-17T23:14:14.614831Z"
+}

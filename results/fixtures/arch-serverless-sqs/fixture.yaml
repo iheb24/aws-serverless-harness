@@ -1,0 +1,68 @@
+module:
+- event_choreography
+- stateful_storage
+- serverless_compute
+theme_id: order-worker
+source_repo: benchmarks/differential/run-1/repos/arch-serverless-sqs
+stack:
+  theme_id: order-worker
+  title: Add an SQS-driven Lambda worker that persists messages to a DynamoDB table with integrated dead-letter
+    handling.
+  status: active
+  support_tier: certified_brick
+  workloads:
+  - package_name: order_worker
+    workload_type: lambda_sqs
+    entrypoint: order_worker.entrypoint.handler
+    env:
+    - name: ORDERS_TABLE_NAME
+      source: plain
+      value: module.orders_table.table_name
+      description: Name of the DynamoDB table for persisting orders.
+    containerized: false
+  infra:
+    module_instances:
+    - module: event_choreography
+      label: orders_queue
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    - module: stateful_storage
+      label: orders_table
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    - module: serverless_compute
+      label: orders_worker_lambda
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    custom_files: []
+    resources: []
+    ssm_paths: []
+    secret_arns: []
+  changelog:
+  - date: '2026-11-17'
+    action: add_stack
+    summary: Add an SQS-driven Lambda worker that persists messages to a DynamoDB table with integrated
+      dead-letter handling.
+    run_id: 20261117-214206-323a60
+    total_tokens: 28441
+    token_usage:
+      scoping:
+        input_tokens: 6402
+        output_tokens: 574
+        total: 6976
+      terraform:
+        input_tokens: 5792
+        output_tokens: 546
+        total: 6338
+      python:
+        input_tokens: 2959
+        output_tokens: 3756
+        total: 6715
+      repair:
+        input_tokens: 6984
+        output_tokens: 1428
+        total: 8412
+  caveats: []
+provenance:
+  generated_by: gemini:gemini-3-flash-preview
+  frozen_from: benchmarks/differential/run-1 (2026-11-18 campaign)

@@ -1,0 +1,49 @@
+module:
+- stateful_storage
+theme_id: order-archive
+source_repo: benchmarks/differential/run-1/repos/arch-storage-full
+stack:
+  theme_id: order-archive
+  title: Add a stateful storage stack for order archiving containing a DynamoDB table with pk/sk keys,
+    an S3 bucket, and a configuration SSM parameter.
+  status: active
+  support_tier: certified_brick
+  workloads: []
+  infra:
+    module_instances:
+    - module: stateful_storage
+      label: order_archive_storage
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    custom_files: []
+    resources: []
+    ssm_paths: []
+    secret_arns: []
+  changelog:
+  - date: '2026-11-17'
+    action: add_stack
+    summary: Add a stateful storage stack for order archiving containing a DynamoDB table with pk/sk keys,
+      an S3 bucket, and a configuration SSM parameter.
+    run_id: 20261117-211357-544934
+    total_tokens: 15726
+    token_usage:
+      scoping:
+        input_tokens: 6405
+        output_tokens: 139
+        total: 6544
+      terraform:
+        input_tokens: 5574
+        output_tokens: 432
+        total: 6006
+      python:
+        input_tokens: 0
+        output_tokens: 0
+        total: 0
+      repair:
+        input_tokens: 2241
+        output_tokens: 935
+        total: 3176
+  caveats: []
+provenance:
+  generated_by: gemini:gemini-3-flash-preview
+  frozen_from: benchmarks/differential/run-1 (2026-11-18 campaign)

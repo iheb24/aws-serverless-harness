@@ -1,0 +1,48 @@
+{
+  "id": "arch-ecs",
+  "module": "container_service_ecs",
+  "kind": "fixture",
+  "theme_id": "order-dashboard",
+  "started_at": "2026-11-18T12:37:56+00:00",
+  "generation": {
+    "generated": "fixture",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "fixture"
+  },
+  "verify": [
+    {
+      "ok": false,
+      "comparison_id": "cmp-f6e22d677c83",
+      "wall_ms": 365114,
+      "per_backend": {
+        "floci": {
+          "passed": 4,
+          "failed": 2
+        },
+        "aws-emulator": {
+          "passed": 4,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": false,
+      "comparison_id": "cmp-34964075edd4",
+      "wall_ms": 363045,
+      "per_backend": {
+        "floci": {
+          "passed": 4,
+          "failed": 2
+        },
+        "aws-emulator": {
+          "passed": 4,
+          "failed": 1
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-18T12:50:04+00:00",
+  "updated_at": "2026-11-18T12:50:04+00:00"
+}

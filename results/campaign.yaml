@@ -1,0 +1,251 @@
+# AWS Emulator validation campaign: elementary architectures, each validated on
+# aws-emulator (repetitions per run).
+# Consumed by scripts/run_backend_campaign.py.
+#
+# kind values:
+#   generated — generate the stack with the real agent pipeline (LLM)
+#   snapshot  — replay a frozen, proven agent-generated stack (deterministic)
+#   fixture   — hand-written deterministic module block (deterministic)
+#   negative  — deliberate defect probe (deterministic)
+schema_version: 1
+model: "gemini:gemini-3-flash-preview"
+reps: 5
+cells:
+  - id: arch-storage-full
+    kind: snapshot
+    module: stateful_storage
+    prompt: >-
+      Add a storage stack named order-archive with a DynamoDB table (pk/sk
+      keys), an S3 bucket, and one SSM parameter at /order-archive/config.
+    theme_id: order-archive
+    fixture:
+      snapshot: benchmarks/fixtures/arch-storage-full
+
+  - id: arch-storage-dynamo
+    kind: snapshot
+    module: stateful_storage
+    prompt: >-
+      Add a storage stack named session-store with a DynamoDB table and one
+      SSM parameter at /session-store/config. Do not create an S3 bucket.
+    theme_id: session-store
+    fixture:
+      snapshot: benchmarks/fixtures/arch-storage-dynamo
+
+  - id: arch-events
+    kind: snapshot
+    module: event_choreography
+    prompt: >-
+      Add an event choreography stack named order-events with an SNS topic
+      fanning out to two SQS queues, each queue with a dead-letter queue,
+      and an EventBridge archive for the event bus.
+    theme_id: order-events
+    fixture:
+      snapshot: benchmarks/fixtures/arch-events
+
+  - id: arch-serverless-sqs
+    kind: snapshot
+    module: serverless_compute
+    prompt: >-
+      Add a serverless stack named order-worker: an SQS queue consumed by a
+      Lambda worker that stores each message in a DynamoDB table.
+    theme_id: order-worker
+    fixture:
+      snapshot: benchmarks/fixtures/arch-serverless-sqs
+
+  - id: arch-serverless-cron
+    kind: snapshot
+    module: serverless_compute
+    prompt: >-
+      Add a scheduled serverless stack named report-cron: a Lambda that
+      runs every 15 minutes via EventBridge Scheduler and writes a
+      heartbeat item into a DynamoDB table.
+    theme_id: report-cron
+    fixture:
+      snapshot: benchmarks/fixtures/arch-serverless-cron
+
+  - id: arch-api-edge
+    kind: fixture
+    module: api_edge
+    prompt: >-
+      Add an API edge stack named order-api: an HTTP API Gateway with one
+      GET route integrated with a Lambda that reads from a DynamoDB table.
+    theme_id: order-api
+    fixture:
+      label: order_api
+      modules:
+        - {module: serverless_compute, label: order_api_fn}
+        - {module: api_edge, label: order_api}
+      workload: {package_name: order_api, workload_type: lambda_api}
+      hcl: |
+        module "order_api_fn" {
+          source = "./modules/serverless_compute"
+
+          name             = "arch-api-edge-fn"
+          filename         = "${path.module}/../dist/order_api.zip"
+          source_code_hash = filebase64sha256("${path.module}/../dist/order_api.zip")
+          handler          = "order_api.entrypoint.handler"
+          runtime          = "python3.13"
+          tags             = local.common_tags
+        }
+
+        module "order_api" {
+          source = "./modules/api_edge"
+
+          name          = "arch-api-edge"
+          invoke_arn    = module.order_api_fn.function_arn
+          function_name = module.order_api_fn.function_name
+          tags          = local.common_tags
+        }
+
+  - id: arch-stepfunctions
+    kind: fixture
+    module: step_functions_workflow
+    prompt: >-
+      Add a step functions stack named order-flow: a state machine with a
+      Lambda task step and a catch-all error handler that records failures
+      into a DynamoDB table.
+    theme_id: order-flow
+    fixture:
+      label: order_flow
+      hcl: |
+        module "order_flow" {
+          source = "./modules/step_functions_workflow"
+
+          name = "arch-stepfunctions-flow"
+          asl_definition = jsonencode({
+            Comment = "campaign fixture: minimal pass-through flow"
+            StartAt = "Prepare"
+            States = {
+              Prepare = { Type = "Pass", Next = "Done" }
+              Done    = { Type = "Succeed" }
+            }
+          })
+          tags = local.common_tags
+        }
+
+  - id: arch-firehose
+    kind: fixture
+    module: firehose_ingestion
+    prompt: >-
+      Add a firehose ingestion stack named clickstream-ingest: a Kinesis
+      Firehose delivery stream delivering records into an S3 bucket with
+      error logging enabled.
+    theme_id: clickstream-ingest
+    fixture:
+      label: clickstream_ingest
+      modules:
+        - {module: stateful_storage, label: ingest_bucket}
+        - {module: firehose_ingestion, label: clickstream_ingest}
+      hcl: |
+        module "ingest_bucket" {
+          source = "./modules/stateful_storage"
+
+          name             = "arch-firehose-raw"
+          enable_s3_bucket = true
+          s3_force_destroy = true
+          enable_dynamodb  = false
+          pitr_enabled     = false
+          tags             = local.common_tags
+        }
+
+        module "clickstream_ingest" {
+          source = "./modules/firehose_ingestion"
+
+          name       = "arch-firehose-stream"
+          bucket_arn = module.ingest_bucket.bucket_arn
+          tags       = local.common_tags
+        }
+
+  - id: arch-batch
+    kind: fixture
+    module: batch_compute
+    prompt: >-
+      Add a batch compute stack named order-export: a containerized AWS
+      Batch job on Fargate reading a DynamoDB table and writing CSV exports
+      to S3, including the ECR repository.
+    theme_id: order-export
+    fixture:
+      label: order_export
+      workload:
+        package_name: order_exporter
+        workload_type: batch_job
+        image_repo: arch-batch-export
+      hcl: |
+        data "aws_caller_identity" "current" {}
+
+        module "order_export" {
+          source = "./modules/batch_compute"
+
+          name       = "arch-batch-export"
+          image_uri  = "${data.aws_caller_identity.current.account_id}.dkr.ecr.eu-west-3.amazonaws.com/arch-batch-export:latest"
+          subnet_ids = ["subnet-0123456789abcdef0"]
+          tags       = local.common_tags
+        }
+
+  - id: arch-ecs
+    kind: fixture
+    module: container_service_ecs
+    prompt: >-
+      Add an ECS service stack named order-dashboard: a small Fargate HTTP
+      service reading order statistics from DynamoDB behind an application
+      load balancer, with autoscaling.
+    theme_id: order-dashboard
+    fixture:
+      label: order_dashboard
+      workload:
+        package_name: order_dashboard
+        workload_type: ecs_service
+        image_repo: arch-ecs-dashboard
+      hcl: |
+        data "aws_caller_identity" "current" {}
+
+        resource "aws_vpc" "fixture" {
+          cidr_block = "10.42.0.0/16"
+          tags       = local.common_tags
+        }
+
+        resource "aws_subnet" "fixture_a" {
+          vpc_id            = aws_vpc.fixture.id
+          cidr_block        = "10.42.1.0/24"
+          availability_zone = "${var.aws_region}a"
+          tags              = local.common_tags
+        }
+
+        resource "aws_subnet" "fixture_b" {
+          vpc_id            = aws_vpc.fixture.id
+          cidr_block        = "10.42.2.0/24"
+          availability_zone = "${var.aws_region}b"
+          tags              = local.common_tags
+        }
+
+        module "order_dashboard" {
+          source = "./modules/container_service_ecs"
+
+          name           = "arch-ecs-dashboard"
+          image_uri      = "${data.aws_caller_identity.current.account_id}.dkr.ecr.eu-west-3.amazonaws.com/arch-ecs-dashboard:latest"
+          subnet_ids     = [aws_subnet.fixture_a.id, aws_subnet.fixture_b.id]
+          execution_mode = "service"
+          desired_count  = 1
+          tags           = local.common_tags
+        }
+
+  - id: arch-negative-ssm
+    kind: negative
+    module: stateful_storage
+    theme_id: negative-ssm
+    fixture:
+      label: negative_ssm
+      hcl: |
+        module "negative_ssm" {
+          source = "./modules/stateful_storage"
+
+          name             = "arch-negative-ssm"
+          enable_s3_bucket = false
+          pitr_enabled     = false
+
+          ssm_parameters = {
+            "app/config" = { value = "x", description = "invalid: no slash" }
+          }
+
+          tags = local.common_tags
+        }

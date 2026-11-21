@@ -1,0 +1,73 @@
+{
+  "id": "arch-events",
+  "module": "event_choreography",
+  "kind": "snapshot",
+  "theme_id": "order-events",
+  "started_at": "2026-11-18T21:21:23+00:00",
+  "generation": {
+    "generated": "snapshot",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "snapshot"
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": null,
+      "wall_ms": 248182,
+      "per_backend": {
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": null,
+      "wall_ms": 192544,
+      "per_backend": {
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": null,
+      "wall_ms": 192526,
+      "per_backend": {
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": null,
+      "wall_ms": 192309,
+      "per_backend": {
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": null,
+      "wall_ms": 192383,
+      "per_backend": {
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-18T21:38:22+00:00",
+  "updated_at": "2026-11-18T21:38:22+00:00"
+}

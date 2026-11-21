@@ -1,0 +1,48 @@
+{
+  "id": "arch-firehose",
+  "module": "firehose_ingestion",
+  "kind": "fixture",
+  "theme_id": "clickstream-ingest",
+  "started_at": "2026-11-17T22:32:42+00:00",
+  "generation": {
+    "generated": "fixture",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "fixture"
+  },
+  "verify": [
+    {
+      "ok": false,
+      "comparison_id": "cmp-4962f7beb11d",
+      "wall_ms": 53686,
+      "per_backend": {
+        "floci": {
+          "passed": 0,
+          "failed": 1
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": false,
+      "comparison_id": "cmp-a60cd5deee9c",
+      "wall_ms": 8181,
+      "per_backend": {
+        "floci": {
+          "passed": 0,
+          "failed": 1
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-17T22:33:44+00:00",
+  "updated_at": "2026-11-17T22:33:44+00:00"
+}

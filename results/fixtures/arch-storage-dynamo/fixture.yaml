@@ -1,0 +1,50 @@
+module:
+- stateful_storage
+theme_id: session-store
+source_repo: benchmarks/differential/run-1/repos/arch-storage-dynamo
+stack:
+  theme_id: session-store
+  title: Add a storage stack named session-store containing a DynamoDB table and an SSM parameter for
+    configuration.
+  status: active
+  support_tier: certified_brick
+  workloads: []
+  infra:
+    module_instances:
+    - module: stateful_storage
+      label: session_store
+      catalog_version: 0.2.0
+      support_tier: certified_brick
+    custom_files: []
+    resources: []
+    ssm_paths:
+    - /session-store/config
+    secret_arns: []
+  changelog:
+  - date: '2026-11-17'
+    action: add_stack
+    summary: Add a storage stack named session-store containing a DynamoDB table and an SSM parameter
+      for configuration.
+    run_id: 20261117-210534-be32ff
+    total_tokens: 13476
+    token_usage:
+      scoping:
+        input_tokens: 6404
+        output_tokens: 260
+        total: 6664
+      terraform:
+        input_tokens: 5577
+        output_tokens: 371
+        total: 5948
+      python:
+        input_tokens: 0
+        output_tokens: 0
+        total: 0
+      repair:
+        input_tokens: 673
+        output_tokens: 191
+        total: 864
+  caveats: []
+provenance:
+  generated_by: gemini:gemini-3-flash-preview
+  frozen_from: benchmarks/differential/run-1 (2026-11-18 campaign)

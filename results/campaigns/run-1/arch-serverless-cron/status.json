@@ -1,0 +1,48 @@
+{
+  "id": "arch-serverless-cron",
+  "module": "serverless_compute",
+  "kind": "generated",
+  "theme_id": "report-cron",
+  "started_at": "2026-11-17T23:19:21+00:00",
+  "generation": {
+    "generated": "agent",
+    "tokens": 27086,
+    "repairs": 2,
+    "notes": ""
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": "cmp-031612724196",
+      "wall_ms": 168583,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-30a1a388288e",
+      "wall_ms": 168086,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-17T23:24:57+00:00",
+  "updated_at": "2026-11-17T23:24:57+00:00"
+}

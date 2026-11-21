@@ -1,0 +1,29 @@
+ls:
+  infra:
+    .tf: snake_case
+  infra/envs:
+    .tfvars: snake_case
+    .tfbackend: snake_case
+  infra/modules:
+    .dir: snake_case
+  infra/modules/**:
+    .tf: snake_case
+  backend:
+    .dir: snake_case
+  backend/**:
+    .py: snake_case
+    .dir: snake_case
+  scripts:
+    .py: snake_case
+  .github/workflows:
+    .yml: kebab-case
+
+ignore:
+  - "**/.git"
+  - "**/.venv"
+  - "**/.mypy_cache"
+  - "**/.ruff_cache"
+  - "**/.pytest_cache"
+  - "**/.terraform"
+  - "**/node_modules"
+  - "**/__pycache__"

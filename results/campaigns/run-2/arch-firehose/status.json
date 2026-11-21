@@ -1,0 +1,93 @@
+{
+  "id": "arch-firehose",
+  "module": "firehose_ingestion",
+  "kind": "fixture",
+  "theme_id": "clickstream-ingest",
+  "started_at": "2026-11-18T18:39:24+00:00",
+  "generation": {
+    "generated": "fixture",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "fixture"
+  },
+  "verify": [
+    {
+      "ok": false,
+      "comparison_id": "cmp-fa61385b6ea7",
+      "wall_ms": 59938,
+      "per_backend": {
+        "floci": {
+          "passed": 0,
+          "failed": 1
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": false,
+      "comparison_id": "cmp-eb5bb57f8285",
+      "wall_ms": 8786,
+      "per_backend": {
+        "floci": {
+          "passed": 0,
+          "failed": 1
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": false,
+      "comparison_id": "cmp-ffd86c2549be",
+      "wall_ms": 8642,
+      "per_backend": {
+        "floci": {
+          "passed": 0,
+          "failed": 1
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": false,
+      "comparison_id": "cmp-a863f0aa2dbb",
+      "wall_ms": 8697,
+      "per_backend": {
+        "floci": {
+          "passed": 0,
+          "failed": 1
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": false,
+      "comparison_id": "cmp-d48560414476",
+      "wall_ms": 8827,
+      "per_backend": {
+        "floci": {
+          "passed": 0,
+          "failed": 1
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-18T18:41:00+00:00",
+  "updated_at": "2026-11-18T18:41:00+00:00"
+}

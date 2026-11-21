@@ -1,0 +1,48 @@
+{
+  "id": "arch-negative-ssm",
+  "module": "stateful_storage",
+  "kind": "negative",
+  "theme_id": "negative-ssm",
+  "started_at": "2026-11-17T22:17:06+00:00",
+  "generation": {
+    "generated": "fixture",
+    "tokens": 0,
+    "repairs": 0,
+    "notes": "negative"
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": "cmp-31a019b750ac",
+      "wall_ms": 87695,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-072e7e01988f",
+      "wall_ms": 26390,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 0,
+          "failed": 1
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-17T22:19:01+00:00",
+  "updated_at": "2026-11-17T22:19:01+00:00"
+}

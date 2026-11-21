@@ -1,0 +1,5 @@
+failure-threshold: warning
+trusted-registries:
+  - docker.io
+  - public.ecr.aws
+  - ghcr.io

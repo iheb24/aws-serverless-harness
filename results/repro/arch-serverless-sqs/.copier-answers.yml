@@ -1,0 +1,10 @@
+# Changes here will be overwritten by Copier; do NOT edit manually
+{
+  "_src_path": "<harness-repo>",
+  "_harness_commit": "2bb8602761c13e5b71c7ff9a960e13f73c641775",
+  "repo_name": "arch-serverless-sqs",
+  "description": "Campaign cell arch-serverless-sqs",
+  "aws_region": "eu-west-3",
+  "python_version": "3.13",
+  "terraform_version": "1.15.8"
+}

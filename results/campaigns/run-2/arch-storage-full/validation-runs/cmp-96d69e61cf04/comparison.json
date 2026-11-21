@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-96d69e61cf04",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-storage-full",
+  "profile": "default",
+  "blocking": "floci",
+  "runs": {
+    "floci": {
+      "validation_id": "val-1aebaf2103d0",
+      "status": "passed",
+      "total_ms": 12399,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 19,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-21b87839cc18",
+      "status": "passed",
+      "total_ms": 16671,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 19,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T17:04:37.628622Z",
+  "finished_at": "2026-11-18T17:05:06.703377Z"
+}

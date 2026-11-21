@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-a407a8d655cd",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-ecs",
+  "profile": "default",
+  "blocking": "floci",
+  "runs": {
+    "floci": {
+      "validation_id": "val-e030f19957cc",
+      "status": "failed",
+      "total_ms": 323840,
+      "failures": [
+        "terraform-destroy"
+      ],
+      "coverage": {
+        "covered_passing": 30,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-bc1d3fe7a729",
+      "status": "passed",
+      "total_ms": 45459,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 30,
+        "covered_failing": 0,
+        "uncovered": 0,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T19:41:00.250193Z",
+  "finished_at": "2026-11-18T19:47:09.549963Z"
+}

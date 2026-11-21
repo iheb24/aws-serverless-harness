@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-537ffad90d9f",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-negative-ssm",
+  "profile": "default",
+  "blocking": "floci",
+  "runs": {
+    "floci": {
+      "validation_id": "val-07508b930286",
+      "status": "passed",
+      "total_ms": 12349,
+      "failures": [],
+      "coverage": {
+        "covered_passing": 19,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-076d2043cd34",
+      "status": "failed",
+      "total_ms": 14546,
+      "failures": [
+        "terraform-apply"
+      ],
+      "coverage": {
+        "covered_passing": 19,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T19:55:42.131281Z",
+  "finished_at": "2026-11-18T19:56:09.029562Z"
+}

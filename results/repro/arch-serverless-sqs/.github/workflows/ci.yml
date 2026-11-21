@@ -1,0 +1,92 @@
+name: ci
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-gates:
+    name: static gates (pre-commit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.8"
+      - uses: terraform-linters/setup-tflint@v6
+        with:
+          tflint_version: v0.64.0
+      - uses: aquasecurity/setup-trivy@v0.3.1
+      - name: install terraform-docs
+        run: |
+          curl -sSLo /tmp/terraform-docs.tar.gz \
+            https://github.com/terraform-docs/terraform-docs/releases/download/v0.24.0/terraform-docs-v0.24.0-linux-amd64.tar.gz
+          tar -xzf /tmp/terraform-docs.tar.gz -C /tmp terraform-docs
+          sudo install /tmp/terraform-docs /usr/local/bin/terraform-docs
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.9.26"
+          enable-cache: true
+      - run: tflint --chdir=infra --init
+      - run: uvx pre-commit run --all-files
+
+  security-audit:
+    name: security audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.9.26"
+          enable-cache: true
+      - uses: aquasecurity/setup-trivy@v0.3.1
+      - run: trivy config ./infra --severity HIGH,CRITICAL --exit-code 1
+      - run: uv run --directory backend pip-audit
+
+  unit-tests-moto:
+    name: unit tests (moto)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.9.26"
+          enable-cache: true
+      - run: uv run --directory backend pytest tests/unit --cov --cov-branch --cov-report=term-missing
+
+  stack-validation-floci:
+    name: stack validation (floci)
+    runs-on: ubuntu-latest
+    services:
+      floci:
+        image: floci/floci:2.5.0
+        ports:
+          - 4566:4566
+    env:
+      AWS_ENDPOINT_URL: http://localhost:4566
+      AWS_ACCESS_KEY_ID: test
+      AWS_SECRET_ACCESS_KEY: test
+      AWS_DEFAULT_REGION: eu-west-3
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10
+        with:
+          version: "0.9.26"
+          enable-cache: true
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.8"
+      - run: python3 scripts/build_dist.py
+      - run: uv run --project backend python scripts/bootstrap_floci_state.py
+      - run: terraform -chdir=infra init -input=false -backend-config=envs/dev.tfbackend
+      - run: terraform -chdir=infra apply -auto-approve -input=false -var-file=envs/dev.tfvars
+      - name: push container images to floci ECR
+        run: uv run --project backend python scripts/push_images_floci.py
+      - run: uv run --directory backend pytest tests/integration
+      - run: terraform -chdir=infra destroy -auto-approve -input=false -var-file=envs/dev.tfvars

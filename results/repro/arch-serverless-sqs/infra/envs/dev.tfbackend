@@ -1,0 +1,4 @@
+bucket       = "arch-serverless-sqs-tfstate-eu-west-3"
+key          = "infra/dev.tfstate"
+region       = "eu-west-3"
+use_lockfile = true

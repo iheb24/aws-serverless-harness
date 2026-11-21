@@ -1,0 +1,48 @@
+{
+  "id": "arch-storage-full",
+  "module": "stateful_storage",
+  "kind": "generated",
+  "theme_id": "order-archive",
+  "started_at": "2026-11-17T20:13:57+00:00",
+  "generation": {
+    "generated": "agent",
+    "tokens": 15726,
+    "repairs": 3,
+    "notes": ""
+  },
+  "verify": [
+    {
+      "ok": true,
+      "comparison_id": "cmp-d01aca2a010a",
+      "wall_ms": 82518,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    },
+    {
+      "ok": true,
+      "comparison_id": "cmp-624102c57b62",
+      "wall_ms": 28503,
+      "per_backend": {
+        "floci": {
+          "passed": 5,
+          "failed": 0
+        },
+        "aws-emulator": {
+          "passed": 5,
+          "failed": 0
+        }
+      }
+    }
+  ],
+  "state": "done",
+  "finished_at": "2026-11-17T20:20:25+00:00",
+  "updated_at": "2026-11-17T20:20:25+00:00"
+}

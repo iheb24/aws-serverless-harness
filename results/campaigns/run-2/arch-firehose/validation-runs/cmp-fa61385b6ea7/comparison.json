@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "comparison_id": "cmp-fa61385b6ea7",
+  "repo": "<harness-repo>/benchmarks/differential/run-2/repos/arch-firehose",
+  "profile": "default",
+  "blocking": "floci",
+  "runs": {
+    "floci": {
+      "validation_id": "val-9293bb6398b6",
+      "status": "failed",
+      "total_ms": 54762,
+      "failures": [
+        "terraform-apply"
+      ],
+      "coverage": {
+        "covered_passing": 34,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    },
+    "aws-emulator": {
+      "validation_id": "val-5a08b697b628",
+      "status": "failed",
+      "total_ms": 5170,
+      "failures": [
+        "terraform-apply"
+      ],
+      "coverage": {
+        "covered_passing": 34,
+        "covered_failing": 0,
+        "uncovered": 1,
+        "unsupported": 0
+      }
+    }
+  },
+  "started_at": "2026-11-18T18:39:25.562632Z",
+  "finished_at": "2026-11-18T18:40:25.497299Z"
+}

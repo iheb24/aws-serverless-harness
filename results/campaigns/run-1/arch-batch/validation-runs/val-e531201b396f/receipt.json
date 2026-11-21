@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "validation_id": "val-e531201b396f",
+  "comparison_id": "cmp-a0a9f2f4a0db",
+  "repo": "<harness-repo>/benchmarks/differential/run-1/repos/arch-batch",
+  "repo_commit": "a4c35867296a3175bf744979cfc021cc604f4255",
+  "dirty_patch_sha256": "9678247c3ee706ef07ca1a65cc956cde7f9d60977fe1de19739ac8ee9ccdabbc",
+  "backend": "floci",
+  "backend_version": "2.5.0",
+  "backend_release_commit": null,
+  "backend_reference": "docker.io/floci/floci:2.5.0",
+  "backend_digest": "sha256:6239c04b56a0f7f8032e0ffd7d070c73394269212b9b340467e539e9f4d61788",
+  "terraform_lock_sha256": "dcd133db81c7091b57ce9d5febf58ed311919fef28ad90805b220471d1a7d8d8",
+  "profile": "default",
+  "status": "failed",
+  "coverage": {
+    "covered_passing": 23,
+    "covered_failing": 0,
+    "uncovered": 0,
+    "unsupported": 0
+  },
+  "failures": [
+    "terraform-destroy"
+  ],
+  "timing_ms": {
+    "total": 392612,
+    "terraform-apply": 35694,
+    "terraform-idempotent": 1498,
+    "container-images": 12364,
+    "container-images-push": 4138,
+    "pytest-integration": 741,
+    "terraform-destroy": 0
+  },
+  "cleanup": {
+    "ok": true,
+    "detail": "stopped harness-floci-e531201b396f"
+  },
+  "artifacts": {},
+  "started_at": "2026-11-17T22:33:44.976301Z",
+  "finished_at": "2026-11-17T22:40:17.540830Z"
+}
